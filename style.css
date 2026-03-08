@@ -1,39 +1,55 @@
 body{
-font-family: Arial;
-background:#f2f2f2;
-text-align:center;
+font-family:Arial;
+margin:0;
+background:#f4f4f4;
 }
 
 header{
-background:#222;
+background:#111;
 color:white;
 padding:20px;
+text-align:center;
 }
 
-.tool{
-background:white;
-margin:30px auto;
-padding:20px;
-width:300px;
-border-radius:10px;
-}
-
-input{
+#search{
 width:90%;
+max-width:400px;
 padding:10px;
-margin:10px;
+margin-top:10px;
+border-radius:6px;
+border:none;
 }
 
-button{
-padding:10px 20px;
-background:#28a745;
-color:white;
+h2{
+padding-left:20px;
+}
+
+.tool-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+gap:10px;
+padding:20px;
+}
+
+.tool-grid button{
+padding:12px;
 border:none;
+background:white;
+border-radius:8px;
+box-shadow:0 2px 4px rgba(0,0,0,0.1);
 cursor:pointer;
 }
 
-.ad{
+.tool{
+display:none;
+background:white;
 margin:20px;
 padding:20px;
-background:#ddd;
+border-radius:10px;
+}
+
+textarea{
+width:100%;
+height:120px;
+margin:10px 0;
 }
