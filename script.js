@@ -6,9 +6,13 @@ tools.forEach(tool=>tool.style.display="none");
 
 document.getElementById(id).style.display="block";
 
-window.scrollTo(0,document.getElementById(id).offsetTop);
+window.scrollTo({
+top:document.getElementById(id).offsetTop,
+behavior:"smooth"
+});
 
 }
+
 
 
 /* SEARCH */
@@ -17,25 +21,18 @@ function searchTools(){
 
 let input=document.getElementById("search").value.toLowerCase();
 
-let buttons=document.querySelectorAll(".tool-grid button");
+let buttons=document.querySelectorAll(".grid button");
 
 buttons.forEach(btn=>{
 
 let text=btn.innerText.toLowerCase();
 
-if(text.includes(input)){
-
-btn.style.display="block";
-
-}else{
-
-btn.style.display="none";
-
-}
+btn.style.display=text.includes(input)?"block":"none";
 
 });
 
 }
+
 
 
 /* WORD COUNTER */
@@ -51,11 +48,12 @@ document.getElementById("wordResult").innerText="Words: "+words;
 }
 
 
+
 /* PASSWORD GENERATOR */
 
 function generatePassword(){
 
-let chars="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+let chars="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#";
 
 let pass="";
 
@@ -68,6 +66,7 @@ pass+=chars[Math.floor(Math.random()*chars.length)];
 document.getElementById("passwordResult").innerText=pass;
 
 }
+
 
 
 /* FAKE IDENTITY */
@@ -97,6 +96,7 @@ Phone: ${phone}<br>
 Email: ${email}`;
 
 }
+
 
 
 /* TEXT TO SPEECH */
