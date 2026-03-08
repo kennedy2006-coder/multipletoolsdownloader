@@ -241,50 +241,67 @@ result.value = "Translation failed.";
 
 // name generator 
 
+async function generateIdentity(){
 
-function generateName(){
+let country = document.getElementById("identityCountry").value;
+let gender = document.getElementById("identityGender").value;
+let minAge = document.getElementById("minAge").value;
+let maxAge = document.getElementById("maxAge").value;
 
-let country = document.getElementById("country").value;
-let gender = document.getElementById("gender").value;
-let ageRange = document.getElementById("ageRange").value;
-
-let url = "https://randomuser.me/api/?";
+let url = "https://randomuser.me/api/?results=1";
 
 if(country){
-url += "nat=" + country + "&";
+url += "&nat=" + country;
 }
 
 if(gender){
-url += "gender=" + gender + "&";
+url += "&gender=" + gender;
 }
 
-fetch(url)
-.then(res => res.json())
-.then(data => {
-
+let res = await fetch(url);
+let data = await res.json();
 let user = data.results[0];
 
-let name = user.name.first + " " + user.name.last;
 let age = user.dob.age;
 
-let valid = true;
-
-if(ageRange === "child" && age > 12) valid = false;
-if(ageRange === "teen" && (age < 13 || age > 19)) valid = false;
-if(ageRange === "adult" && (age < 20 || age > 59)) valid = false;
-if(ageRange === "senior" && age < 60) valid = false;
-
-if(!valid){
-generateName();
-return;
+/* AGE FILTER */
+if(minAge && age < minAge){
+return generateIdentity();
 }
 
-document.getElementById("nameResult").innerHTML =
-"Name: " + name + "<br>Age: " + age;
+if(maxAge && age > maxAge){
+return generateIdentity();
+}
 
-});
+let name = user.name.first + " " + user.name.last;
+let phone = user.phone;
+let email = user.email;
+
+let street = user.location.street.number + " " + user.location.street.name;
+let city = user.location.city;
+let state = user.location.state;
+let countryName = user.location.country;
+let postcode = user.location.postcode;
+
+let picture = user.picture.large;
+
+document.getElementById("identityResult").innerHTML = `
+<img src="${picture}" style="width:120px;border-radius:50%">
+
+<p><b>Name:</b> ${name}</p>
+<p><b>Gender:</b> ${user.gender}</p>
+<p><b>Age:</b> ${age}</p>
+<p><b>Email:</b> ${email}</p>
+<p><b>Phone:</b> ${phone}</p>
+<p><b>Street:</b> ${street}</p>
+<p><b>City:</b> ${city}</p>
+<p><b>State:</b> ${state}</p>
+<p><b>Country:</b> ${countryName}</p>
+<p><b>Postcode:</b> ${postcode}</p>
+`;
 
 }
+
 
 
 
@@ -567,6 +584,7 @@ document.getElementById("strengthResult").innerText=strength;
 
 
 });
+
 
 
 
