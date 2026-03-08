@@ -9,162 +9,171 @@
 </head>
 <body>
 
-<!-- Mobile Top Banner -->
-<div id="mobileAlertBanner" class="banner">
-    For the best experience, please switch your browser to <strong>DESKTOP MODE</strong>.
-    <span id="closeBanner">✖</span>
+<!-- Mobile Banner -->
+<div id="mobileAlertBanner" style="display:none; position:fixed; top:0; left:0; width:100%; background:#ffcc00; color:#000; text-align:center; padding:10px; font-weight:bold; z-index:9999;">
+    For best experience, switch to <strong>DESKTOP MODE</strong>.
+    <span id="closeBanner" style="margin-left:15px; cursor:pointer;">✖</span>
 </div>
 
 <div class="app">
 
-    <!-- SIDEBAR -->
-    <div class="sidebar">
-        <h2>MultiTools</h2>
-        <input type="text" id="toolSearch" placeholder="Search tool...">
-        <ul id="toolList">
-            <li class="categoryTitle">Text & Writing</li>
-            <li onclick="showTool('password')">Password Generator</li>
-            <li onclick="showTool('strength')">Password Strength Checker</li>
-            <li onclick="showTool('word')">Word Counter</li>
-            <li onclick="showTool('char')">Character Counter</li>
-            <li onclick="showTool('case')">Case Converter</li>
-            <li onclick="showTool('reverse')">Text Reverser</li>
-            <li onclick="showTool('duplicate')">Remove Duplicate Lines</li>
-            <li onclick="showTool('translator')">Language Translator</li>
-            <li onclick="showTool('acronym')">Acronym Generator</li>
-            <li onclick="showTool('emoji')">Emoji Translator</li>
+<!-- Sidebar -->
+<div class="sidebar">
+    <h2>MultiTools</h2>
+    <input type="text" id="toolSearch" placeholder="Search tool...">
+    <ul>
+        <!-- SOCIAL MEDIA -->
+        <li class="categoryTitle">Social Media</li>
+        <li onclick="showTool('ytThumbnail')">YouTube Thumbnail Downloader</li>
+        <li onclick="showTool('videoDownloader')">Video Downloader</li>
+        <li onclick="showTool('metaTag')">Meta Tag Generator</li>
+        <li onclick="showTool('igBio')">Instagram Bio Generator</li>
+        <li onclick="showTool('tiktokCaption')">TikTok Caption Generator</li>
 
-            <li class="categoryTitle">Fun & Random</li>
-            <li onclick="showTool('random')">Random Number Generator</li>
-            <li onclick="showTool('age')">Age Calculator</li>
-            <li onclick="showTool('color')">Color Generator</li>
-            <li onclick="showTool('fortune')">Daily Quote / Fortune Cookie</li>
-            <li onclick="showTool('zodiac')">Zodiac Sign Calculator</li>
-            
-            <li class="categoryTitle">Social Media (Demo / API Required)</li>
-            <li onclick="showTool('hashtag')">Hashtag Generator</li>
-            <li onclick="showTool('thumbnail')">YouTube Thumbnail Downloader</li>
-            <li onclick="showTool('downloader')">Video Downloader</li>
-            <li onclick="showTool('meta')">Meta Tag Generator</li>
-            <li onclick="showTool('bio')">Instagram Bio Generator</li>
-            <li onclick="showTool('caption')">TikTok Caption Generator</li>
-            
-            <li class="categoryTitle">SEO & Web (Demo / API Required)</li>
-            <li onclick="showTool('urltool')">URL Encoder / Decoder</li>
-            <li onclick="showTool('qr')">QR Code Generator</li>
-            <li onclick="showTool('compress')">Image Compressor</li>
-            <li onclick="showTool('image')">Image Converter</li>
-            <li onclick="showTool('pdf')">Convert Image to PDF</li>
-            <li onclick="showTool('sitemap')">Sitemap Generator</li>
-            <li onclick="showTool('robots')">Robots.txt Generator</li>
-            <li onclick="showTool('minify')">HTML / CSS / JS Minifier</li>
-            <li onclick="showTool('speed')">Page Speed Analyzer</li>
-            <li onclick="showTool('keywordDensity')">Keyword Density Checker</li>
+        <!-- TEXT & WRITING -->
+        <li class="categoryTitle">Text & Writing</li>
+        <li onclick="showTool('password')">Password Generator</li>
+        <li onclick="showTool('strength')">Password Strength Checker</li>
+        <li onclick="showTool('wordCount')">Word Counter</li>
+        <li onclick="showTool('charCount')">Character Counter</li>
+        <li onclick="showTool('caseConvert')">Text Case Converter</li>
+        <li onclick="showTool('reverseText')">Text Reverser</li>
+        <li onclick="showTool('translator')">Translator</li>
+        <li onclick="showTool('emoji')">Emoji Translator</li>
+        <li onclick="showTool('acronym')">Acronym Generator</li>
 
-            <li class="categoryTitle">Images & Videos (Demo / API Required)</li>
-            <li onclick="showTool('meme')">Meme Generator</li>
-            <li onclick="showTool('gif')">GIF Creator</li>
-            <li onclick="showTool('photoResize')">Photo Resizer</li>
-            <li onclick="showTool('gif2video')">GIF to Video Converter</li>
-            <li onclick="showTool('bgRemove')">Background Remover</li>
-            <li onclick="showTool('imageCaption')">Image Caption Generator</li>
+        <!-- FUN & RANDOM -->
+        <li class="categoryTitle">Fun & Random</li>
+        <li onclick="showTool('randomNumber')">Random Number Generator</li>
+        <li onclick="showTool('ageCalc')">Age Calculator</li>
+        <li onclick="showTool('colorGen')">Color Generator</li>
+        <li onclick="showTool('fakeIdentity')">Fake Identity Generator</li>
+        <li onclick="showTool('fortune')">Daily Quote / Fortune Cookie</li>
+        <li onclick="showTool('zodiac')">Zodiac Sign Calculator</li>
 
-        </ul>
-        <button onclick="toggleDark()">🌙 Dark Mode</button>
+        <!-- IMAGES & VIDEOS -->
+        <li class="categoryTitle">Images & Videos</li>
+        <li onclick="showTool('memeGen')">Meme Generator</li>
+        <li onclick="showTool('gifGen')">GIF Creator</li>
+        <li onclick="showTool('photoResize')">Photo Resizer</li>
+        <li onclick="showTool('gifToVideo')">GIF to Video Converter</li>
+        <li onclick="showTool('bgRemove')">Background Remover</li>
+
+        <!-- SEO & WEB -->
+        <li class="categoryTitle">SEO & Web</li>
+        <li onclick="showTool('urlEncode')">URL Encoder/Decoder</li>
+        <li onclick="showTool('qrGen')">QR Code Generator</li>
+        <li onclick="showTool('imageCompress')">Image Compressor</li>
+        <li onclick="showTool('imgToPDF')">Image to PDF</li>
+        <li onclick="showTool('sitemapGen')">Sitemap Generator</li>
+        <li onclick="showTool('robotsGen')">Robots.txt Generator</li>
+    </ul>
+    <button onclick="toggleDark()">🌙 Dark Mode</button>
+</div>
+
+<!-- Main Area -->
+<div class="main">
+    <!-- HOME -->
+    <div id="home" class="toolPage">
+        <h1>Welcome to MultiTools Ultimate</h1>
+        <p>Select a tool from the sidebar to get started.</p>
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8718351899149472" data-ad-slot="1951309947" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
-    <!-- MAIN AREA -->
-    <div class="main">
-        <div id="home" class="toolPage active">
-            <h1>Welcome to MultiTools Ultimate</h1>
-            <p>Select a tool from the sidebar to get started.</p>
-            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8718351899149472" data-ad-slot="1951309947" data-ad-format="auto" data-full-width-responsive="true"></ins>
-            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-        </div>
-
-        <!-- TEXT & WRITING TOOLS -->
-        <div id="password" class="toolPage">
-            <h2>Password Generator</h2>
-            <input type="number" id="passLength" placeholder="Length" value="12">
-            <button onclick="generatePassword()">Generate Password</button>
-            <input type="text" id="passwordOutput" readonly>
-        </div>
-
-        <div id="translator" class="toolPage">
-            <h2>Language Translator</h2>
-            <textarea id="textToTranslate" placeholder="Enter text"></textarea>
-            <select id="targetLang">
-                <option value="es">Spanish</option>
-                <option value="fr">French</option>
-                <option value="de">German</option>
-                <option value="zh">Chinese</option>
-            </select>
-            <button onclick="translateText()">Translate</button>
-            <textarea id="translatedResult" readonly></textarea>
-        </div>
-
-        <div id="emoji" class="toolPage">
-            <h2>Emoji Translator</h2>
-            <textarea id="emojiText" placeholder="Enter text"></textarea>
-            <button onclick="emojiTranslate()">Translate to Emoji</button>
-            <textarea id="emojiResult" readonly></textarea>
-        </div>
-
-        <div id="acronym" class="toolPage">
-            <h2>Acronym Generator</h2>
-            <input type="text" id="acronymInput" placeholder="Enter phrase">
-            <button onclick="generateAcronym()">Generate Acronym</button>
-            <input type="text" id="acronymOutput" readonly>
-        </div>
-
-        <div id="random" class="toolPage">
-            <h2>Random Number Generator</h2>
-            <input type="number" id="min" placeholder="Min" value="1">
-            <input type="number" id="max" placeholder="Max" value="100">
-            <button onclick="randomNumber()">Generate</button>
-            <p id="randomResult"></p>
-        </div>
-
-        <div id="color" class="toolPage">
-            <h2>Color Generator</h2>
-            <button onclick="generateColor()">Generate Color</button>
-            <div id="colorBox"></div>
-            <p id="colorCode"></p>
-        </div>
-
-        <div id="fortune" class="toolPage">
-            <h2>Daily Quote / Fortune Cookie</h2>
-            <button onclick="generateFortune()">Get Fortune</button>
-            <p id="fortuneResult"></p>
-        </div>
-
-        <div id="age" class="toolPage">
-            <h2>Age Calculator</h2>
-            <input type="date" id="dob">
-            <button onclick="calculateAge()">Calculate Age</button>
-            <p id="ageResult"></p>
-        </div>
-
-        <div id="zodiac" class="toolPage">
-            <h2>Zodiac Sign Calculator</h2>
-            <input type="date" id="zodiacDob">
-            <button onclick="calculateZodiac()">Get Zodiac Sign</button>
-            <p id="zodiacResult"></p>
-        </div>
-
-        <!-- SOCIAL MEDIA & IMAGE/VIDEO Tools show info that API required -->
-        <div id="downloader" class="toolPage">
-            <h2>Video Downloader</h2>
-            <p>This tool requires server/API integration. Demo unavailable in frontend only.</p>
-        </div>
-
-        <div id="thumbnail" class="toolPage">
-            <h2>YouTube Thumbnail Downloader</h2>
-            <p>This tool requires server/API integration. Demo unavailable in frontend only.</p>
-        </div>
-
+    <!-- YouTube Thumbnail -->
+    <div id="ytThumbnail" class="toolPage">
+        <h2>YouTube Thumbnail Downloader</h2>
+        <input type="text" id="ytURL" placeholder="Enter YouTube URL">
+        <button onclick="downloadThumbnail()">Download Thumbnail</button>
+        <div id="ytThumbnailResult"></div>
     </div>
 
+    <!-- Video Downloader -->
+    <div id="videoDownloader" class="toolPage">
+        <h2>Video Downloader</h2>
+        <input type="text" id="videoURL" placeholder="Enter video URL">
+        <button onclick="downloadVideo()">Download Video</button>
+        <div id="videoResult"></div>
+    </div>
+
+    <!-- Fake Identity Generator -->
+    <div id="fakeIdentity" class="toolPage">
+        <h2>Fake Identity Generator</h2>
+        <button onclick="generateIdentity()">Generate Identity</button>
+        <div id="identityResult"></div>
+    </div>
+
+    <!-- Translator -->
+    <div id="translator" class="toolPage">
+        <h2>Translator</h2>
+        <textarea id="textToTranslate" placeholder="Enter text"></textarea>
+        <select id="targetLang">
+            <option value="es">Spanish</option>
+            <option value="fr">French</option>
+            <option value="de">German</option>
+            <option value="zh">Chinese</option>
+        </select>
+        <button onclick="translateText()">Translate</button>
+        <textarea id="translatedResult" readonly></textarea>
+    </div>
+
+    <!-- Emoji Translator -->
+    <div id="emoji" class="toolPage">
+        <h2>Emoji Translator</h2>
+        <input type="text" id="emojiText" placeholder="Enter text">
+        <button onclick="emojiTranslate()">Translate</button>
+        <div id="emojiResult"></div>
+    </div>
+
+    <!-- Acronym Generator -->
+    <div id="acronym" class="toolPage">
+        <h2>Acronym Generator</h2>
+        <input type="text" id="acronymText" placeholder="Enter phrase">
+        <button onclick="generateAcronym()">Generate Acronym</button>
+        <div id="acronymResult"></div>
+    </div>
+
+    <!-- Random Number Generator -->
+    <div id="randomNumber" class="toolPage">
+        <h2>Random Number Generator</h2>
+        <input type="number" id="min" placeholder="Min">
+        <input type="number" id="max" placeholder="Max">
+        <button onclick="randomNumber()">Generate</button>
+        <div id="randomResult"></div>
+    </div>
+
+    <!-- Age Calculator -->
+    <div id="ageCalc" class="toolPage">
+        <h2>Age Calculator</h2>
+        <input type="date" id="dob">
+        <button onclick="calculateAge()">Calculate Age</button>
+        <div id="ageResult"></div>
+    </div>
+
+    <!-- Color Generator -->
+    <div id="colorGen" class="toolPage">
+        <h2>Color Generator</h2>
+        <button onclick="generateColor()">Generate Random Color</button>
+        <div id="colorBox"></div>
+        <div id="colorCode"></div>
+    </div>
+
+    <!-- Daily Quote / Fortune Cookie -->
+    <div id="fortune" class="toolPage">
+        <h2>Daily Quote / Fortune Cookie</h2>
+        <button onclick="getFortune()">Get Quote</button>
+        <div id="fortuneResult"></div>
+    </div>
+
+    <!-- Zodiac Sign Calculator -->
+    <div id="zodiac" class="toolPage">
+        <h2>Zodiac Sign Calculator</h2>
+        <input type="date" id="zodiacDOB">
+        <button onclick="getZodiac()">Get Zodiac Sign</button>
+        <div id="zodiacResult"></div>
+    </div>
+</div>
 </div>
 
 <footer>
