@@ -408,6 +408,18 @@ placeholder="Paste TikTok / Instagram / Facebook / X link here">
 </div>
 
 <script src="script.js"></script>
+     <script>
+  // Detect mobile devices
+  if (/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    const banner = document.getElementById("mobileAlertBanner");
+    banner.style.display = "block";
+
+    // Close button
+    document.getElementById("closeBanner").onclick = function() {
+      banner.style.display = "none";
+    };
+  }
+     </script>
 <!-- FOOTER -->
 
 <footer>
@@ -417,6 +429,7 @@ placeholder="Paste TikTok / Instagram / Facebook / X link here">
 
 
 </html>
+
 
 
 
