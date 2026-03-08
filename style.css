@@ -1,191 +1,39 @@
-/* ------------------ General ------------------ */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
+body{
+font-family: Arial;
+background:#f2f2f2;
+text-align:center;
 }
 
-body {
-    background: #f4f4f4;
-    color: #111;
-    min-height: 100vh;
+header{
+background:#222;
+color:white;
+padding:20px;
 }
 
-.dark body {
-    background: #1e1e1e;
-    color: #f1f1f1;
+.tool{
+background:white;
+margin:30px auto;
+padding:20px;
+width:300px;
+border-radius:10px;
 }
 
-/* ------------------ App Layout ------------------ */
-.app {
-    display: flex;
-    height: 100vh;
-    overflow: hidden;
+input{
+width:90%;
+padding:10px;
+margin:10px;
 }
 
-/* ------------------ Sidebar ------------------ */
-.sidebar {
-    width: 260px;
-    background: #111;
-    color: white;
-    padding: 20px;
-    overflow-y: auto;
-    flex-shrink: 0;
+button{
+padding:10px 20px;
+background:#28a745;
+color:white;
+border:none;
+cursor:pointer;
 }
 
-.sidebar h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 22px;
-    color: #ffcc00;
+.ad{
+margin:20px;
+padding:20px;
+background:#ddd;
 }
-
-.sidebar input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 6px;
-    border: none;
-}
-
-.sidebar ul {
-    list-style: none;
-    padding: 0;
-}
-
-.sidebar li {
-    padding: 10px 8px;
-    cursor: pointer;
-    border-bottom: 1px solid #333;
-    border-radius: 4px;
-    transition: background 0.2s;
-}
-
-.sidebar li:hover {
-    background: #333;
-}
-
-.sidebar .categoryTitle {
-    font-weight: bold;
-    font-size: 14px;
-    color: #ffcc00;
-    cursor: default;
-}
-
-.sidebar button {
-    margin-top: 20px;
-    width: 100%;
-    padding: 10px;
-    border: none;
-    background: #2c3e50;
-    color: white;
-    font-size: 16px;
-    border-radius: 6px;
-    cursor: pointer;
-}
-
-.sidebar button:hover {
-    background: #34495e;
-}
-
-/* ------------------ Main Content ------------------ */
-.main {
-    flex: 1;
-    padding: 40px;
-    overflow-y: auto;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    background: #f4f4f4;
-    position: relative;
-}
-
-.dark .main {
-    background: #1e1e1e;
-}
-
-.toolPage {
-    display: none;
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
-    width: 100%;
-    max-width: 900px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.1);
-    text-align: center;
-}
-
-.dark .toolPage {
-    background: #2c2c2c;
-}
-
-/* ------------------ Inputs & Buttons ------------------ */
-input, textarea, select, button {
-    width: 100%;
-    padding: 12px;
-    margin-top: 10px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-}
-
-button {
-    background: #2c3e50;
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: background 0.2s;
-}
-
-button:hover {
-    background: #34495e;
-}
-
-textarea {
-    resize: vertical;
-}
-
-/* ------------------ Special Elements ------------------ */
-#colorBox {
-    height: 60px;
-    margin-top: 10px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-}
-
-#mobileAlertBanner {
-    font-weight: bold;
-}
-
-/* ------------------ Footer ------------------ */
-footer {
-    background: #111;
-    color: white;
-    text-align: center;
-    padding: 15px 0;
-    font-size: 14px;
-    border-top: 1px solid #333;
-}
-
-.dark footer {
-    background: #222;
-    color: #ddd;
-}
-
-/* ------------------ Responsive ------------------ */
-@media(max-width: 900px){
-    .app {
-        flex-direction: column;
-    }
-    .sidebar {
-        width: 100%;
-        height: auto;
-    }
-    .main {
-        padding: 20px;
-    }
-    .toolPage {
-        max-width: 100%;
-    }
-    }
