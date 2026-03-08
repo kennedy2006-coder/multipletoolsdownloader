@@ -72,7 +72,7 @@
 <li onclick="showTool('alternate')">Alternate Case</li>
 
 <li onclick="showTool('urltool')">URL Encoder/Decoder</li>
-
+<li onclick="showTool('hashtag')">Hashtag Generator</li>
 <li onclick="showTool('translator')">Language Translator</li>
 
 <li onclick="showTool('identityGenerator')">Fake Identity Generator</li>
@@ -483,7 +483,26 @@ readonly></textarea>
 
 </div>
 
+<!-- hash tag-->
+<div id="hashtag" class="toolPage">
 
+<h2>Social Media Hashtag Generator</h2>
+
+<input type="text" id="hashtagKeyword" placeholder="Enter keyword (example: travel)">
+
+<select id="platform">
+<option value="tiktok">TikTok</option>
+<option value="youtube">YouTube</option>
+<option value="instagram">Instagram</option>
+<option value="twitter">X (Twitter)</option>
+</select>
+
+<button onclick="generateHashtags()">Generate Hashtags</button>
+
+<textarea id="hashtagResult" placeholder="Hashtags will appear here"></textarea>
+
+</div>
+     
      
 <!-- DOWNLOAD -->
 <div id="downloader" class="toolPage" style="display:none">
@@ -529,6 +548,7 @@ placeholder="Paste TikTok / Instagram / Facebook / X link here">
 
 
 </html>
+
 
 
 
