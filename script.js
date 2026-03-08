@@ -137,38 +137,44 @@ document.getElementById("colorCode").innerText=color;
 }
 
 // FASTSAVERAPI DOWNLOADER (KEEP THIS ONE)
+
 function downloadVideo(){
-  let url = document.getElementById("videoURL").value.trim();
-  let status = document.getElementById("downloadStatus");
 
-  if(!url){
-    status.innerText = "Please paste a video link";
-    return;
-  }
+let url = document.getElementById("videoURL").value.trim();
+let status = document.getElementById("downloadStatus");
 
-  status.innerText = "Fetching video...";
+if(!url){
+status.innerText = "Please paste a video link";
+return;
+}
 
-  fetch(`https://api.fastsaverapi.com/v1/download?url=${encodeURIComponent(url)}&token=nVlsqPmMQ1EMfvWV`)
-    .then(res => res.json())
-    .then(data => {
-      if(data.result && data.result.response){
-        status.innerText = "Download ready! Click below:";
-        let link = document.createElement("a");
-        link.href = data.result.response;
-        link.innerText = "Download Video";
-        link.target = "_blank";
-        link.style.display = "block";
-        link.style.marginTop = "10px";
-        status.innerHTML = "Download ready!";
-        status.appendChild(link);
-      } else {
-        status.innerText = "Download failed. Try another video.";
-      }
-    })
-    .catch(err => {
-      console.error(err);
-      status.innerText = "API error occurred.";
-    });
+status.innerText = "Fetching video...";
+
+fetch(`https://api.fastsaverapi.com/v1/download?url=${encodeURIComponent(url)}&token=nVlsqPmMQ1EMfvWV`)
+.then(res => res.json())
+.then(data => {
+
+if(data.result && data.result.response){
+
+status.innerHTML = "Download ready:<br>";
+
+let link = document.createElement("a");
+link.href = data.result.response;
+link.innerText = "Download Video";
+link.target = "_blank";
+
+status.appendChild(link);
+
+}else{
+status.innerText = "Download failed. Try another link.";
+}
+
+})
+.catch(err => {
+status.innerText = "API error occurred.";
+console.log(err);
+});
+
 }
 
 
@@ -477,3 +483,4 @@ document.getElementById("strengthResult").innerText=strength;
 
 
 });
+
