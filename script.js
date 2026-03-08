@@ -220,7 +220,7 @@ return;
 
 result.value = "Translating...";
 
-fetch("https://libretranslate.de/translate",{
+fetch("https://translate.argosopentech.com/translate",{
 method:"POST",
 headers:{
 "Content-Type":"application/json"
@@ -237,50 +237,32 @@ format:"text"
 result.value = data.translatedText;
 })
 .catch(()=>{
-result.value = "Translation failed.";
+result.value = "Translation failed. Try again.";
 });
 
 }
 
 
 
-function swapLanguages(){
-
-let source = document.getElementById("sourceLang");
-let target = document.getElementById("targetLang");
-
-let temp = source.value;
-source.value = target.value;
-target.value = temp;
-
-}
-
-
-
-function copyTranslation(){
-
-let text = document.getElementById("translatedResult");
-
-text.select();
-document.execCommand("copy");
-
-alert("Translation copied!");
-
-}
 
 // name generator 
-function generateIdentity(){
 
-let country = document.getElementById("identityCountry").value;
-let result = document.getElementById("identityResult");
 
-let url = "https://randomuser.me/api/";
+function generateName(){
+
+let country = document.getElementById("country").value;
+let gender = document.getElementById("gender").value;
+let ageRange = document.getElementById("ageRange").value;
+
+let url = "https://randomuser.me/api/?";
 
 if(country){
-url += "?nat=" + country;
+url += "nat=" + country + "&";
 }
 
-result.innerHTML = "Generating identity...";
+if(gender){
+url += "gender=" + gender + "&";
+}
 
 fetch(url)
 .then(res => res.json())
@@ -289,24 +271,27 @@ fetch(url)
 let user = data.results[0];
 
 let name = user.name.first + " " + user.name.last;
-let email = user.email;
-let phone = user.phone;
-let country = user.location.country;
-let city = user.location.city;
-let street = user.location.street.number + " " + user.location.street.name;
+let age = user.dob.age;
 
-result.innerHTML = `
-<b>Name:</b> ${name}<br>
-<b>Email:</b> ${email}<br>
-<b>Phone:</b> ${phone}<br>
-<b>Country:</b> ${country}<br>
-<b>City:</b> ${city}<br>
-<b>Address:</b> ${street}
-`;
+let valid = true;
+
+if(ageRange === "child" && age > 12) valid = false;
+if(ageRange === "teen" && (age < 13 || age > 19)) valid = false;
+if(ageRange === "adult" && (age < 20 || age > 59)) valid = false;
+if(ageRange === "senior" && age < 60) valid = false;
+
+if(!valid){
+generateName();
+return;
+}
+
+document.getElementById("nameResult").innerHTML =
+"Name: " + name + "<br>Age: " + age;
 
 });
 
 }
+
 
 
 // IMAGE TO PDF
@@ -588,6 +573,7 @@ document.getElementById("strengthResult").innerText=strength;
 
 
 });
+
 
 
 
