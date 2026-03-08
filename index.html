@@ -4,9 +4,7 @@
 
 <title>MultiTools Hub</title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<meta name="description" content="50+ free online tools including generators, converters, text utilities and social media tools">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="stylesheet" href="style.css">
 
@@ -18,24 +16,24 @@ crossorigin="anonymous"></script>
 
 <body>
 
-<header>
+<header class="topbar">
 
 <h1>MultiTools Hub</h1>
 
-<input type="text" id="search" placeholder="Search tools..." onkeyup="searchTools()">
+<input id="search" placeholder="Search tools..." onkeyup="searchTools()">
 
 </header>
 
 
-<!-- TOOL LIST -->
 
-<div id="toolList">
+<!-- CATEGORY GRID -->
 
-<!-- TEXT TOOLS -->
+<div class="container">
+
 
 <h2>Text Tools</h2>
 
-<div class="tool-grid">
+<div class="grid">
 
 <button onclick="showTool('word')">Word Counter</button>
 <button onclick="showTool('char')">Character Counter</button>
@@ -45,11 +43,9 @@ crossorigin="anonymous"></script>
 </div>
 
 
-<!-- GENERATORS -->
-
 <h2>Generators</h2>
 
-<div class="tool-grid">
+<div class="grid">
 
 <button onclick="showTool('password')">Password Generator</button>
 <button onclick="showTool('identity')">Fake Identity Generator</button>
@@ -59,11 +55,9 @@ crossorigin="anonymous"></script>
 </div>
 
 
-<!-- SOCIAL MEDIA -->
+<h2>Social Media</h2>
 
-<h2>Social Media Tools</h2>
-
-<div class="tool-grid">
+<div class="grid">
 
 <button onclick="showTool('hashtags')">Hashtag Generator</button>
 <button onclick="showTool('igbio')">Instagram Bio Generator</button>
@@ -73,11 +67,9 @@ crossorigin="anonymous"></script>
 </div>
 
 
-<!-- UTILITIES -->
-
 <h2>Utilities</h2>
 
-<div class="tool-grid">
+<div class="grid">
 
 <button onclick="showTool('tts')">Text To Speech</button>
 <button onclick="showTool('translator')">Translator</button>
@@ -88,10 +80,10 @@ crossorigin="anonymous"></script>
 </div>
 
 
-<!-- TOOL DISPLAY AREA -->
 
-<div id="toolArea">
+<!-- TOOL PANEL -->
 
+<div class="tool-panel">
 
 <section id="word" class="tool">
 
@@ -99,24 +91,22 @@ crossorigin="anonymous"></script>
 
 <textarea id="text"></textarea>
 
-<button onclick="countWords()">Count</button>
+<button onclick="countWords()">Count Words</button>
 
 <p id="wordResult"></p>
 
 </section>
 
 
-
 <section id="password" class="tool">
 
 <h3>Password Generator</h3>
 
-<button onclick="generatePassword()">Generate</button>
+<button onclick="generatePassword()">Generate Password</button>
 
 <p id="passwordResult"></p>
 
 </section>
-
 
 
 <section id="identity" class="tool">
@@ -130,7 +120,6 @@ crossorigin="anonymous"></script>
 </section>
 
 
-
 <section id="tts" class="tool">
 
 <h3>Text To Speech</h3>
@@ -141,8 +130,15 @@ crossorigin="anonymous"></script>
 
 </section>
 
-
 </div>
+
+
+<footer>
+
+<p>© 2026 MultiTools Hub</p>
+
+</footer>
+
 
 <script src="app.js"></script>
 
