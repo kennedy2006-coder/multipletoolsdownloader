@@ -1,565 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>MultiTools Ultimate</title>
-     <!-- Global site tag (gtag.js) - Google AdSense -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8718351899149472"
-     crossorigin="anonymous"></script>
 <link rel="stylesheet" href="style.css">
-
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8718351899149472" crossorigin="anonymous"></script>
 </head>
-
 <body>
 
 <!-- Mobile Top Banner -->
-  <div id="mobileAlertBanner" style="display:none; position:fixed; top:0; left:0; width:100%; background:#ffcc00; color:#000; text-align:center; padding:10px; font-weight:bold; z-index:9999;">
+<div id="mobileAlertBanner" style="display:none; position:fixed; top:0; left:0; width:100%; background:#ffcc00; color:#000; text-align:center; padding:10px; font-weight:bold; z-index:9999;">
     For the best experience, please switch your browser to <strong>DESKTOP MODE</strong>.
     <span id="closeBanner" style="margin-left:15px; cursor:pointer;">✖</span>
-  </div>
-     
+</div>
+
 <div class="app">
 
 <!-- SIDEBAR -->
-
 <div class="sidebar">
+    <h2>MultiTools</h2>
+    <input type="text" id="toolSearch" placeholder="Search tool...">
 
-<h2>MultiTools</h2>
+    <ul>
+        <!-- SOCIAL MEDIA TOOLS -->
+        <li class="categoryTitle">Social Media</li>
+        <li onclick="showTool('hashtag')">Hashtag Generator</li>
+        <li onclick="showTool('thumbnail')">YouTube Thumbnail Downloader</li>
+        <li onclick="showTool('downloader')">Video Downloader</li>
+        <li onclick="showTool('meta')">Meta Tag Generator</li>
+        <li onclick="showTool('caption')">TikTok Caption Generator</li>
+        <li onclick="showTool('bio')">Instagram Bio Generator</li>
+        <li onclick="showTool('ytdesc')">YouTube Description Generator</li>
+        <li onclick="showTool('trendChecker')">Trending Hashtags Checker</li>
 
-<input type="text" id="toolSearch" placeholder="Search tool...">
+        <!-- TEXT & WRITING TOOLS -->
+        <li class="categoryTitle">Text & Writing</li>
+        <li onclick="showTool('password')">Password Generator</li>
+        <li onclick="showTool('strength')">Password Strength Checker</li>
+        <li onclick="showTool('word')">Word Counter</li>
+        <li onclick="showTool('char')">Character Counter</li>
+        <li onclick="showTool('case')">Case Converter</li>
+        <li onclick="showTool('alternate')">Alternate Case</li>
+        <li onclick="showTool('reverse')">Text Reverser</li>
+        <li onclick="showTool('duplicate')">Remove Duplicate Lines</li>
+        <li onclick="showTool('translator')">Language Translator</li>
+        <li onclick="showTool('acronym')">Acronym Generator</li>
+        <li onclick="showTool('emoji')">Emoji Translator</li>
+        <li onclick="showTool('markdown')">Markdown to HTML</li>
+        <li onclick="showTool('plagiarism')">Plagiarism Checker</li>
 
-<ul>
+        <!-- SEO & WEB TOOLS -->
+        <li class="categoryTitle">SEO & Web</li>
+        <li onclick="showTool('urltool')">URL Encoder / Decoder</li>
+        <li onclick="showTool('qr')">QR Code Generator</li>
+        <li onclick="showTool('compress')">Image Compressor</li>
+        <li onclick="showTool('image')">Image Converter</li>
+        <li onclick="showTool('pdf')">Convert Image to PDF</li>
+        <li onclick="showTool('sitemap')">Sitemap Generator</li>
+        <li onclick="showTool('robots')">Robots.txt Generator</li>
+        <li onclick="showTool('minify')">HTML / CSS / JS Minifier</li>
+        <li onclick="showTool('speed')">Page Speed Analyzer</li>
+        <li onclick="showTool('keywordDensity')">Keyword Density Checker</li>
 
-<li onclick="showTool('home')">Home</li>
+        <!-- FUN & RANDOM TOOLS -->
+        <li class="categoryTitle">Fun & Random</li>
+        <li onclick="showTool('random')">Random Number Generator</li>
+        <li onclick="showTool('age')">Age Calculator</li>
+        <li onclick="showTool('color')">Color Generator</li>
+        <li onclick="showTool('identityGenerator')">Fake Identity Generator</li>
+        <li onclick="showTool('speech')">Text to Speech</li>
+        <li onclick="showTool('lottery')">Lottery Number Generator</li>
+        <li onclick="showTool('fortune')">Daily Quote / Fortune Cookie</li>
+        <li onclick="showTool('zodiac')">Zodiac Sign Calculator</li>
+        <li onclick="showTool('name')">Random Name Generator</li>
+        <li onclick="showTool('fakeEmail')">Fake Email Generator</li>
 
-<li onclick="showTool('password')">Password Generator</li>
+        <!-- IMAGES & VIDEOS -->
+        <li class="categoryTitle">Images & Videos</li>
+        <li onclick="showTool('meme')">Meme Generator</li>
+        <li onclick="showTool('gif')">GIF Creator</li>
+        <li onclick="showTool('photoResize')">Photo Resizer</li>
+        <li onclick="showTool('gif2video')">GIF to Video Converter</li>
+        <li onclick="showTool('bgRemove')">Background Remover</li>
+        <li onclick="showTool('imageCaption')">Image Caption Generator</li>
 
-<li onclick="showTool('word')">Word Counter</li>
-
-<li onclick="showTool('case')">Case Converter</li>
-
-<li onclick="showTool('age')">Age Calculator</li>
-
-<li onclick="showTool('speech')">Text to Speech</li>
-
-<li onclick="showTool('random')">Random Number</li>
-
-<li onclick="showTool('color')">Color Generator</li>
-
-     <li onclick="showTool('downloader')">Video Downloader</li>
-<li onclick="showTool('pdf')">Convert to PDF</li>
-
-<li onclick="showTool('image')">Image Converter</li>
-
-<li onclick="showTool('reverse')">Text Reverser</li>
-
-<li onclick="showTool('duplicate')">Remove Duplicate Lines</li>
-
-<li onclick="showTool('thumbnail')">YouTube Thumbnail Downloader</li>
-
-<li onclick="showTool('meta')">Meta Tag Generator</li>
-
-<li onclick="showTool('qr')">QR Code Generator</li>
-
-<li onclick="showTool('compress')">Image Compressor</li>
-
-<li onclick="showTool('char')">Character Counter</li>
-
-<li onclick="showTool('alternate')">Alternate Case</li>
-
-<li onclick="showTool('urltool')">URL Encoder/Decoder</li>
-<li onclick="showTool('hashtag')">Hashtag Generator</li>
-<li onclick="showTool('translator')">Language Translator</li>
-
-<li onclick="showTool('identityGenerator')">Fake Identity Generator</li>
-     
-<li onclick="showTool('strength')">Password Strength Checker</li>
-</ul>
-
-<button onclick="toggleDark()">🌙 Dark Mode</button>
-
+        <!-- Placeholder for future tools -->
+        <li class="categoryTitle">More Tools Coming Soon...</li>
+        <li onclick="showTool('tool101')">Tool 101</li>
+        <li onclick="showTool('tool102')">Tool 102</li>
+        <li onclick="showTool('tool103')">Tool 103</li>
+    </ul>
+    <button onclick="toggleDark()">🌙 Dark Mode</button>
 </div>
-
-
 
 <!-- MAIN AREA -->
-
-
 <div class="main">
+    <!-- HOME -->
+    <div id="home" class="toolPage">
+        <h1>Welcome to MultiTools Ultimate</h1>
+        <p>Select a tool from the sidebar to get started.</p>
 
-<!-- HOME -->
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8718351899149472" data-ad-slot="1951309947" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
 
-<div id="home" class="toolPage">
-  <h1>Welcome to MultiTools</h1>
-  <p>
-    Select a tool from the sidebar.
-  </p>
-
-  <!-- AdSense Ad Unit -->
-  <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-client="ca-pub-8718351899149472"
-       data-ad-slot="1951309947"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-  <script>
-       (adsbygoogle = window.adsbygoogle || []).push({});
-  </script>
+    <!-- TOOL CONTAINERS -->
+    <!-- Copy your existing tools like #password, #strength, #translator, #hashtag, #downloader here -->
 </div>
-
-<!---convert image to pdf-->
-<div id="pdf" class="toolPage">
-
-<h2>Convert Image to PDF</h2>
-
-<input type="file" id="pdfFile">
-
-<button onclick="convertPDF()">Convert to PDF</button>
-
 </div>
-
-<!--image converter-->
-<div id="image" class="toolPage">
-
-<h2>Image Converter (PNG / JPG)</h2>
-
-<input type="file" id="imageInput">
-
-<select id="format">
-
-<option value="image/png">PNG</option>
-
-<option value="image/jpeg">JPG</option>
-
-</select>
-
-<button onclick="convertImage()">Convert</button>
-
-<a id="downloadImage"></a>
-
-</div>
-
-
-<!----text reverse-->
-<div id="reverse" class="toolPage">
-
-<h2>Text Reverser</h2>
-
-<textarea id="reverseText"></textarea>
-
-<button onclick="reverseText()">Reverse Text</button>
-
-<p id="reverseResult"></p>
-
-</div>
-
-<!---duplicate line tools-->
-<div id="duplicate" class="toolPage">
-
-<h2>Remove Duplicate Lines</h2>
-
-<textarea id="duplicateText"></textarea>
-
-<button onclick="removeDuplicates()">Remove Duplicates</button>
-
-<textarea id="duplicateResult"></textarea>
-
-</div>
-
-
-<!---yt thumbnail downoader-->
-<div id="thumbnail" class="toolPage">
-
-<h2>YouTube Thumbnail Downloader</h2>
-
-<input type="text" id="ytlink" placeholder="Paste YouTube link">
-
-<button onclick="getThumbnail()">Get Thumbnail</button>
-
-<img id="thumbnailResult" style="width:100%;margin-top:10px;">
-
-</div>
-
-<!----tag generator-->
-
-<div id="meta" class="toolPage">
-
-<h2>Meta Tag Generator</h2>
-
-<input id="metaTitle" placeholder="Website Title">
-
-<input id="metaDesc" placeholder="Website Description">
-
-<input id="metaKeywords" placeholder="Keywords">
-
-<button onclick="generateMeta()">Generate</button>
-
-<textarea id="metaResult"></textarea>
-
-</div>
-
-<!---qr code-->
-
-<div id="qr" class="toolPage">
-
-<h2>QR Code Generator</h2>
-
-<input id="qrText" placeholder="Enter text or URL">
-
-<button onclick="generateQR()">Generate QR</button>
-
-<img id="qrResult">
-
-</div>
-
-<!---image compressor-->
-
-<div id="compress" class="toolPage">
-
-<h2>Image Compressor</h2>
-
-<input type="file" id="compressImage">
-
-<button onclick="compressImage()">Compress</button>
-
-<a id="downloadCompressed"></a>
-
-</div>
-
-<!-----character-counter-->
-
-<div id="char" class="toolPage">
-
-<h2>Character Counter</h2>
-
-<textarea id="charInput"></textarea>
-
-<p>Characters: <span id="charCount">0</span></p>
-
-</div>
-
-<!----alternate case-->
-
-<div id="alternate" class="toolPage">
-
-<h2>Alternate Case</h2>
-
-<textarea id="altText"></textarea>
-
-<button onclick="alternateCase()">Convert</button>
-
-<p id="altResult"></p>
-
-</div>
-
-<!----url encoder/decoder-->
-
-<div id="urltool" class="toolPage">
-
-<h2>URL Encoder / Decoder</h2>
-
-<textarea id="urlText"></textarea>
-
-<button onclick="encodeURL()">Encode</button>
-
-<button onclick="decodeURL()">Decode</button>
-
-<p id="urlResult"></p>
-
-</div>
-
-<!---password checker-->
-<div id="strength" class="toolPage">
-
-<h2>Password Strength Checker</h2>
-
-<input type="text" id="passwordCheck">
-
-<p id="strengthResult"></p>
-
-</div>
-
-
-
-<!-- PASSWORD -->
-
-<div id="password" class="toolPage">
-
-<h2>Password Generator</h2>
-
-<input type="number" id="passLength" placeholder="Password Length">
-
-<button onclick="generatePassword()">Generate</button>
-
-<input type="text" id="passwordOutput">
-
-</div>
-
-
-<!-- WORD COUNTER -->
-
-<div id="word" class="toolPage">
-
-<h2>Word Counter</h2>
-
-<textarea id="wordText"></textarea>
-
-<p>Words: <span id="wordCount">0</span></p>
-
-</div>
-
-
-<!-- CASE -->
-
-<div id="case" class="toolPage">
-
-<h2>Case Converter</h2>
-
-<textarea id="caseText"></textarea>
-
-<button onclick="toUpper()">UPPERCASE</button>
-
-<button onclick="toLower()">lowercase</button>
-
-</div>
-
-
-<!-- AGE -->
-
-<div id="age" class="toolPage">
-
-<h2>Age Calculator</h2>
-
-<input type="date" id="dob">
-
-<button onclick="calculateAge()">Calculate</button>
-
-<p id="ageResult"></p>
-
-</div>
-
-
-<!-- TEXT TO SPEECH -->
-
-<div id="speech" class="toolPage">
-
-<h2>Text To Speech</h2>
-
-<textarea id="speechText"></textarea>
-
-<button onclick="speak()">Speak</button>
-
-</div>
-
-
-<!-- RANDOM NUMBER -->
-
-<div id="random" class="toolPage">
-
-<h2>Random Number Generator</h2>
-
-<input type="number" id="min" placeholder="Min">
-
-<input type="number" id="max" placeholder="Max">
-
-<button onclick="randomNumber()">Generate</button>
-
-<p id="randomResult"></p>
-
-</div>
-
-
-<!-- COLOR -->
-
-<div id="color" class="toolPage">
-
-<h2>Color Generator</h2>
-
-<button onclick="generateColor()">Generate</button>
-
-<div id="colorBox"></div>
-
-<p id="colorCode"></p>
-
-</div>
-
-
-<!--Translator-->
-     <div id="translator" class="toolPage" style="display:none">
-
-<h2>Language Translator</h2>
-
-<textarea id="textToTranslate"
-placeholder="Enter text to translate"></textarea>
-
-<select id="sourceLang">
-<option value="auto">Auto Detect</option>
-<option value="en">English</option>
-<option value="es">Spanish</option>
-<option value="fr">French</option>
-<option value="de">German</option>
-<option value="it">Italian</option>
-<option value="pt">Portuguese</option>
-<option value="ru">Russian</option>
-<option value="ar">Arabic</option>
-<option value="zh">Chinese</option>
-<option value="ja">Japanese</option>
-<option value="hi">Hindi</option>
-<option value="ko">Korean</option>
-<option value="tr">Turkish</option>
-<option value="nl">Dutch</option>
-<option value="pl">Polish</option>
-</select>
-
-<select id="targetLang">
-<option value="en">English</option>
-<option value="es">Spanish</option>
-<option value="fr">French</option>
-<option value="de">German</option>
-<option value="it">Italian</option>
-<option value="pt">Portuguese</option>
-<option value="ru">Russian</option>
-<option value="ar">Arabic</option>
-<option value="zh">Chinese</option>
-<option value="ja">Japanese</option>
-<option value="hi">Hindi</option>
-<option value="ko">Korean</option>
-<option value="tr">Turkish</option>
-<option value="nl">Dutch</option>
-<option value="pl">Polish</option>
-</select>
-
-<button onclick="swapLanguages()">Swap Languages</button>
-
-<button onclick="translateText()">Translate</button>
-
-<textarea id="translatedResult"
-placeholder="Translation will appear here"
-readonly></textarea>
-
-<button onclick="copyTranslation()">Copy Translation</button>
-
-     </div>
-
-<!----Name generator---->
-
-<!-- FAKE IDENTITY GENERATOR -->
-<div id="identityGenerator" class="toolPage" style="display:none">
-
-<h2>Fake Identity Generator</h2>
-
-<label>Country</label>
-<select id="identityCountry">
-<option value="">Random Country</option>
-<option value="us">USA</option>
-<option value="gb">UK</option>
-<option value="fr">France</option>
-<option value="de">Germany</option>
-<option value="br">Brazil</option>
-<option value="au">Australia</option>
-<option value="ca">Canada</option>
-</select>
-
-<label>Gender</label>
-<select id="identityGender">
-<option value="">Random</option>
-<option value="male">Male</option>
-<option value="female">Female</option>
-</select>
-
-<label>Minimum Age</label>
-<input type="number" id="minAge" placeholder="Example: 18">
-
-<label>Maximum Age</label>
-<input type="number" id="maxAge" placeholder="Example: 60">
-
-<button onclick="generateIdentity()">Generate Identity</button>
-
-<div id="identityResult"></div>
-
-</div>
-
-<!-- hash tag-->
-<div id="hashtag" class="toolPage">
-
-<h2>Social Media Hashtag Generator</h2>
-
-<input type="text" id="hashtagKeyword" placeholder="Enter keyword (example: travel)">
-
-<select id="platform">
-<option value="tiktok">TikTok</option>
-<option value="youtube">YouTube</option>
-<option value="instagram">Instagram</option>
-<option value="twitter">X (Twitter)</option>
-</select>
-
-<button onclick="generateHashtags()">Generate Hashtags</button>
-
-<textarea id="hashtagResult" placeholder="Hashtags will appear here"></textarea>
-
-</div>
-     
-     
-<!-- DOWNLOAD -->
-<div id="downloader" class="toolPage" style="display:none">
-
-<h2>Video Downloader</h2>
-
-<input 
-type="text" 
-id="videoURL" 
-placeholder="Paste TikTok / Instagram / Facebook / X link here">
-
-<button onclick="downloadVideo()">Download</button>
-
-<p id="downloadStatus"></p>
-
-</div>
-
-
-</div>
-
-</div>
-
-<script src="script.js"></script>
-     <script>
-  // Detect mobile devices
-  if (/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-    const banner = document.getElementById("mobileAlertBanner");
-    banner.style.display = "block";
-
-    // Close button
-    document.getElementById("closeBanner").onclick = function() {
-      banner.style.display = "none";
-    };
-  }
-     </script>
-     
-<!-- FOOTER -->
 
 <footer>
-    <p>© 2026 <span id="companyName">Kenny Technology</span>. All rights reserved.</p>
+    <p>© 2026 Kenny Technology. All rights reserved.</p>
 </footer>
+
+<script src="script.js"></script>
+<script>
+if(/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+    const banner=document.getElementById("mobileAlertBanner");
+    banner.style.display="block";
+    document.getElementById("closeBanner").onclick=()=>banner.style.display="none";
+}
+</script>
 </body>
-
-
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                                                                </html>
