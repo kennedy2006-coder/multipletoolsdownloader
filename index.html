@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
+
+<title>MultiTools Hub</title>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MultiTools Downloader</title>
+
+<meta name="description" content="50+ free online tools including generators, converters, text utilities and social media tools">
+
 <link rel="stylesheet" href="style.css">
 
-<!-- Google AdSense -->
+<!-- Adsense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8718351899149472"
 crossorigin="anonymous"></script>
 
@@ -15,32 +19,132 @@ crossorigin="anonymous"></script>
 <body>
 
 <header>
-<h1>MultiTools Downloader</h1>
-<p>Download videos, images and files easily</p>
+
+<h1>MultiTools Hub</h1>
+
+<input type="text" id="search" placeholder="Search tools..." onkeyup="searchTools()">
+
 </header>
 
-<!-- Ad space -->
-<div class="ad">
-Ad Space
+
+<!-- TOOL LIST -->
+
+<div id="toolList">
+
+<!-- TEXT TOOLS -->
+
+<h2>Text Tools</h2>
+
+<div class="tool-grid">
+
+<button onclick="showTool('word')">Word Counter</button>
+<button onclick="showTool('char')">Character Counter</button>
+<button onclick="showTool('duplicate')">Duplicate Line Remover</button>
+<button onclick="showTool('case')">Case Converter</button>
+
 </div>
 
-<section class="tool">
 
-<h2>Video Downloader</h2>
+<!-- GENERATORS -->
 
-<input type="text" id="videoUrl" placeholder="Paste video URL">
+<h2>Generators</h2>
 
-<button onclick="downloadVideo()">Download</button>
+<div class="tool-grid">
 
-<p id="result"></p>
+<button onclick="showTool('password')">Password Generator</button>
+<button onclick="showTool('identity')">Fake Identity Generator</button>
+<button onclick="showTool('username')">Username Generator</button>
+<button onclick="showTool('qr')">QR Code Generator</button>
+
+</div>
+
+
+<!-- SOCIAL MEDIA -->
+
+<h2>Social Media Tools</h2>
+
+<div class="tool-grid">
+
+<button onclick="showTool('hashtags')">Hashtag Generator</button>
+<button onclick="showTool('igbio')">Instagram Bio Generator</button>
+<button onclick="showTool('tiktokcaption')">TikTok Caption Generator</button>
+<button onclick="showTool('xcaption')">X Caption Generator</button>
+
+</div>
+
+
+<!-- UTILITIES -->
+
+<h2>Utilities</h2>
+
+<div class="tool-grid">
+
+<button onclick="showTool('tts')">Text To Speech</button>
+<button onclick="showTool('translator')">Translator</button>
+<button onclick="showTool('passwordcheck')">Password Strength Checker</button>
+
+</div>
+
+</div>
+
+
+<!-- TOOL DISPLAY AREA -->
+
+<div id="toolArea">
+
+
+<section id="word" class="tool">
+
+<h3>Word Counter</h3>
+
+<textarea id="text"></textarea>
+
+<button onclick="countWords()">Count</button>
+
+<p id="wordResult"></p>
 
 </section>
 
-<footer>
-<p>© 2026 MultiTools Downloader</p>
-</footer>
 
-<script src="script.js"></script>
+
+<section id="password" class="tool">
+
+<h3>Password Generator</h3>
+
+<button onclick="generatePassword()">Generate</button>
+
+<p id="passwordResult"></p>
+
+</section>
+
+
+
+<section id="identity" class="tool">
+
+<h3>Fake Identity Generator</h3>
+
+<button onclick="generateIdentity()">Generate</button>
+
+<div id="identityResult"></div>
+
+</section>
+
+
+
+<section id="tts" class="tool">
+
+<h3>Text To Speech</h3>
+
+<textarea id="speechText"></textarea>
+
+<button onclick="speak()">Speak</button>
+
+</section>
+
+
+</div>
+
+<script src="app.js"></script>
 
 </body>
 </html>
