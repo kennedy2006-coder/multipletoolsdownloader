@@ -136,23 +136,40 @@ document.getElementById("colorCode").innerText=color;
 
 }
 
-
+// downloader
 function downloadVideo(){
+  let url = document.getElementById("videoURL").value.trim();
+  let status = document.getElementById("downloadStatus");
 
-let url = document.getElementById("videoURL").value;
+  if(!url){
+    status.innerText = "Please paste a video link";
+    return;
+  }
 
-if(url.includes("tiktok")){
+  status.innerText = "Fetching video...";
 
-window.open("https://tikwm.com/api/?url="+url);
-
-}
-
-else{
-
-window.open("https://api.vevioz.com/api/button/mp4?url="+url);
-
-}
-
+  fetch(`https://api.fastsaverapi.com/v1/download?url=${encodeURIComponent(url)}&token=nVlsqPmMQ1EMfvWV`)
+    .then(res => res.json())
+    .then(data => {
+      if(data.result && data.result.response){
+        status.innerText = "Download ready! Click below:";
+        // Instead of opening new tab, show button inside the page
+        let link = document.createElement("a");
+        link.href = data.result.response;
+        link.innerText = "Download Video";
+        link.target = "_blank";
+        link.style.display = "block";
+        link.style.marginTop = "10px";
+        status.innerHTML = "Download ready!";
+        status.appendChild(link);
+      } else {
+        status.innerText = "Download failed. Try another video.";
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      status.innerText = "API error occurred.";
+    });
 }
 
 
@@ -499,3 +516,4 @@ status.innerText = "API error occurred.";
 });
 
 }
+
