@@ -1,24 +1,137 @@
-<div class="main">
-  <!-- HOME -->
-  <div id="home" class="toolPage" style="display:flex; flex-direction:column; align-items:center; justify-content:center;">
-      <h1>Welcome to MultiTools Ultimate</h1>
-      <p>Select a tool from the sidebar to get started.</p>
-  </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MultiTools Ultimate</title>
+<link rel="stylesheet" href="style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8718351899149472" crossorigin="anonymous"></script>
+</head>
+<body>
 
-  <!-- PASSWORD GENERATOR -->
-  <div id="password" class="toolPage" style="display:flex; flex-direction:column; align-items:center; justify-content:center;">
-      <h2>Password Generator</h2>
-      <input type="number" id="passLength" placeholder="Enter length" value="12">
-      <button onclick="generatePassword()">Generate</button>
-      <input type="text" id="passwordOutput" readonly>
-  </div>
-
-  <!-- RANDOM NUMBER -->
-  <div id="random" class="toolPage" style="display:flex; flex-direction:column; align-items:center; justify-content:center;">
-      <h2>Random Number Generator</h2>
-      <input type="number" id="min" placeholder="Min" value="0">
-      <input type="number" id="max" placeholder="Max" value="100">
-      <button onclick="randomNumber()">Generate</button>
-      <p>Result: <span id="randomResult"></span></p>
-  </div>
+<!-- Mobile Top Banner -->
+<div id="mobileAlertBanner">
+    For the best experience, please switch your browser to <strong>DESKTOP MODE</strong>.
+    <span id="closeBanner">✖</span>
 </div>
+
+<div class="app">
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+    <h2>MultiTools</h2>
+    <input type="text" id="toolSearch" placeholder="Search tool...">
+    <ul>
+        <!-- SOCIAL MEDIA -->
+        <li class="categoryTitle">Social Media</li>
+        <li onclick="showTool('hashtag')">Hashtag Generator</li>
+        <li onclick="showTool('thumbnail')">YouTube Thumbnail Downloader</li>
+        <li onclick="showTool('downloader')">Video Downloader</li>
+        <li onclick="showTool('meta')">Meta Tag Generator</li>
+        <li onclick="showTool('caption')">TikTok Caption Generator</li>
+        <li onclick="showTool('bio')">Instagram Bio Generator</li>
+        <li onclick="showTool('ytdesc')">YouTube Description Generator</li>
+
+        <!-- TEXT & WRITING -->
+        <li class="categoryTitle">Text & Writing</li>
+        <li onclick="showTool('password')">Password Generator</li>
+        <li onclick="showTool('strength')">Password Strength Checker</li>
+        <li onclick="showTool('word')">Word Counter</li>
+        <li onclick="showTool('char')">Character Counter</li>
+        <li onclick="showTool('case')">Case Converter</li>
+        <li onclick="showTool('alternate')">Alternate Case</li>
+        <li onclick="showTool('reverse')">Text Reverser</li>
+        <li onclick="showTool('duplicate')">Remove Duplicate Lines</li>
+        <li onclick="showTool('translator')">Language Translator</li>
+        <li onclick="showTool('acronym')">Acronym Generator</li>
+        <li onclick="showTool('emoji')">Emoji Translator</li>
+        <li onclick="showTool('markdown')">Markdown to HTML</li>
+        <li onclick="showTool('plagiarism')">Plagiarism Checker</li>
+
+        <!-- SEO & WEB -->
+        <li class="categoryTitle">SEO & Web</li>
+        <li onclick="showTool('urltool')">URL Encoder / Decoder</li>
+        <li onclick="showTool('qr')">QR Code Generator</li>
+        <li onclick="showTool('compress')">Image Compressor</li>
+        <li onclick="showTool('image')">Image Converter</li>
+        <li onclick="showTool('pdf')">Convert Image to PDF</li>
+        <li onclick="showTool('sitemap')">Sitemap Generator</li>
+        <li onclick="showTool('robots')">Robots.txt Generator</li>
+        <li onclick="showTool('minify')">HTML / CSS / JS Minifier</li>
+        <li onclick="showTool('speed')">Page Speed Analyzer</li>
+        <li onclick="showTool('keywordDensity')">Keyword Density Checker</li>
+
+        <!-- FUN & RANDOM -->
+        <li class="categoryTitle">Fun & Random</li>
+        <li onclick="showTool('random')">Random Number Generator</li>
+        <li onclick="showTool('age')">Age Calculator</li>
+        <li onclick="showTool('color')">Color Generator</li>
+        <li onclick="showTool('identityGenerator')">Fake Identity Generator</li>
+        <li onclick="showTool('speech')">Text to Speech</li>
+        <li onclick="showTool('lottery')">Lottery Number Generator</li>
+        <li onclick="showTool('fortune')">Daily Quote / Fortune Cookie</li>
+        <li onclick="showTool('zodiac')">Zodiac Sign Calculator</li>
+        <li onclick="showTool('name')">Random Name Generator</li>
+        <li onclick="showTool('fakeEmail')">Fake Email Generator</li>
+
+        <!-- IMAGES & VIDEOS -->
+        <li class="categoryTitle">Images & Videos</li>
+        <li onclick="showTool('meme')">Meme Generator</li>
+        <li onclick="showTool('gif')">GIF Creator</li>
+        <li onclick="showTool('photoResize')">Photo Resizer</li>
+        <li onclick="showTool('gif2video')">GIF to Video Converter</li>
+        <li onclick="showTool('bgRemove')">Background Remover</li>
+        <li onclick="showTool('imageCaption')">Image Caption Generator</li>
+
+        <!-- Placeholder tools to reach 100+ -->
+        <li class="categoryTitle">More Tools...</li>
+        <li onclick="showTool('tool101')">Tool 101</li>
+        <li onclick="showTool('tool102')">Tool 102</li>
+        <li onclick="showTool('tool103')">Tool 103</li>
+    </ul>
+    <button onclick="toggleDark()">🌙 Dark Mode</button>
+</div>
+
+<!-- MAIN AREA -->
+<div class="main">
+    <!-- HOME -->
+    <div id="home" class="toolPage">
+        <h1>Welcome to MultiTools Ultimate</h1>
+        <p>Select a tool from the sidebar to get started.</p>
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8718351899149472" data-ad-slot="1951309947" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <!-- EXAMPLE TOOL -->
+    <div id="password" class="toolPage centerContent">
+        <h2>Password Generator</h2>
+        <input type="number" id="passLength" placeholder="Password Length">
+        <button onclick="generatePassword()">Generate Password</button>
+        <input type="text" id="passwordOutput" readonly>
+    </div>
+
+    <div id="strength" class="toolPage centerContent">
+        <h2>Password Strength Checker</h2>
+        <input type="text" id="passwordCheck" placeholder="Enter password">
+        <p id="strengthResult"></p>
+    </div>
+
+    <!-- More tool containers go here for each tool (translator, hashtag, QR, etc.) -->
+</div>
+
+</div>
+
+<footer>
+    <p>© 2026 Kenny Technology. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+<script>
+if(/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+    const banner=document.getElementById("mobileAlertBanner");
+    banner.style.display="block";
+    document.getElementById("closeBanner").onclick=()=>banner.style.display="none";
+}
+</script>
+</body>
+</html>
