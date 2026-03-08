@@ -110,4 +110,20 @@ height:auto;
 padding:20px;
 }
 
+
+}
+
+footer{
+    background:#111;
+    color:white;
+    text-align:center;
+    padding:15px 0;
+    margin-top:20px;
+    font-size:14px;
+    border-top:1px solid #333;
+}
+
+.dark footer{
+    background:#222;
+    color:#ddd;
 }
