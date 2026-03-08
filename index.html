@@ -449,25 +449,35 @@ readonly></textarea>
      
 <div id="identityGenerator" class="toolPage" style="display:none">
 
-<h2>Fake Identity Generator</h2>
-
-<select id="identityCountry">
-<option value="">Random Country</option>
+<select id="country">
+<option value="">Any Country</option>
 <option value="us">USA</option>
-<option value="gb">United Kingdom</option>
-<option value="ca">Canada</option>
-<option value="au">Australia</option>
+<option value="gb">UK</option>
 <option value="fr">France</option>
 <option value="de">Germany</option>
+<option value="ng">Nigeria</option>
 <option value="br">Brazil</option>
 <option value="in">India</option>
-<option value="ng">Nigeria</option>
-<option value="jp">Japan</option>
 </select>
 
-<button onclick="generateIdentity()">Generate Identity</button>
+<select id="gender">
+<option value="">Any Gender</option>
+<option value="male">Male</option>
+<option value="female">Female</option>
+</select>
 
-<div id="identityResult"></div>
+<select id="ageRange">
+<option value="">Any Age</option>
+<option value="child">Child</option>
+<option value="teen">Teen</option>
+<option value="adult">Adult</option>
+<option value="senior">Senior</option>
+</select>
+
+<button onclick="generateName()">Generate Name</button>
+
+<p id="nameResult"></p>
+
 
 </div>
      
@@ -515,6 +525,7 @@ placeholder="Paste TikTok / Instagram / Facebook / X link here">
 
 
 </html>
+
 
 
 
