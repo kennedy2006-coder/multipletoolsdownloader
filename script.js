@@ -206,22 +206,81 @@ item.style.display = "none";
 
 // translator 
 
-function googleTranslateElementInit() {
-new google.translate.TranslateElement(
-{pageLanguage: 'en'},
-'google_translate_element'
-);
+function translateText(){
+
+let text = document.getElementById("textToTranslate").value;
+let source = document.getElementById("sourceLang").value;
+let target = document.getElementById("targetLang").value;
+let result = document.getElementById("translatedResult");
+
+if(!text){
+result.value = "Enter text to translate.";
+return;
+}
+
+result.value = "Translating...";
+
+fetch("https://libretranslate.de/translate",{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+q:text,
+source:source,
+target:target,
+format:"text"
+})
+})
+.then(res=>res.json())
+.then(data=>{
+result.value = data.translatedText;
+})
+.catch(()=>{
+result.value = "Translation failed.";
+});
+
+}
+
+
+
+function swapLanguages(){
+
+let source = document.getElementById("sourceLang");
+let target = document.getElementById("targetLang");
+
+let temp = source.value;
+source.value = target.value;
+target.value = temp;
+
+}
+
+
+
+function copyTranslation(){
+
+let text = document.getElementById("translatedResult");
+
+text.select();
+document.execCommand("copy");
+
+alert("Translation copied!");
+
 }
 
 // name generator 
-function generateName(){
+function generateIdentity(){
 
-let country = document.getElementById("country").value;
+let country = document.getElementById("identityCountry").value;
+let result = document.getElementById("identityResult");
+
 let url = "https://randomuser.me/api/";
 
 if(country){
 url += "?nat=" + country;
 }
+
+result.innerHTML = "Generating identity...";
 
 fetch(url)
 .then(res => res.json())
@@ -229,10 +288,21 @@ fetch(url)
 
 let user = data.results[0];
 
-let name =
-user.name.first + " " + user.name.last;
+let name = user.name.first + " " + user.name.last;
+let email = user.email;
+let phone = user.phone;
+let country = user.location.country;
+let city = user.location.city;
+let street = user.location.street.number + " " + user.location.street.name;
 
-document.getElementById("nameResult").innerText = name;
+result.innerHTML = `
+<b>Name:</b> ${name}<br>
+<b>Email:</b> ${email}<br>
+<b>Phone:</b> ${phone}<br>
+<b>Country:</b> ${country}<br>
+<b>City:</b> ${city}<br>
+<b>Address:</b> ${street}
+`;
 
 });
 
@@ -518,5 +588,6 @@ document.getElementById("strengthResult").innerText=strength;
 
 
 });
+
 
 
