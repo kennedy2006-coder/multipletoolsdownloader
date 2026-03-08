@@ -204,6 +204,41 @@ item.style.display = "none";
 
 });
 
+// translator 
+
+function googleTranslateElementInit() {
+new google.translate.TranslateElement(
+{pageLanguage: 'en'},
+'google_translate_element'
+);
+}
+
+// name generator 
+function generateName(){
+
+let country = document.getElementById("country").value;
+let url = "https://randomuser.me/api/";
+
+if(country){
+url += "?nat=" + country;
+}
+
+fetch(url)
+.then(res => res.json())
+.then(data => {
+
+let user = data.results[0];
+
+let name =
+user.name.first + " " + user.name.last;
+
+document.getElementById("nameResult").innerText = name;
+
+});
+
+}
+
+
 // IMAGE TO PDF
 
 function convertPDF(){
@@ -483,4 +518,5 @@ document.getElementById("strengthResult").innerText=strength;
 
 
 });
+
 
