@@ -1,45 +1,54 @@
-// ---------------------- BASIC UI ----------------------
-
-// Show Tool and center content
-function showTool(id){
-    let pages = document.querySelectorAll(".toolPage");
+// ------------------ TOOL DISPLAY ------------------ //
+function showTool(id) {
+    // Hide all tool pages
+    const pages = document.querySelectorAll(".toolPage");
     pages.forEach(p => p.style.display = "none");
-    let active = document.getElementById(id);
-    if(active){
-        active.style.display = "flex";  // Flex for center alignment
-        active.style.flexDirection = "column";
-        active.style.alignItems = "center";
-        active.style.justifyContent = "center";
+
+    // Show the selected tool
+    const page = document.getElementById(id);
+    if(page){
+        page.style.display = "flex";      // Flex ensures content is centered
+        page.style.justifyContent = "center";
+        page.style.alignItems = "center";
+        page.style.flexDirection = "column";
     }
 }
-window.onload = function() { showTool("home"); }
+window.onload = () => showTool("home");
 
-// Dark Mode Toggle
+// ------------------ DARK MODE ------------------ //
 function toggleDark() {
     document.body.classList.toggle("dark");
 }
 
-// Sidebar Search
-document.getElementById("toolSearch").addEventListener("keyup", function() {
-    let filter = this.value.toLowerCase();
-    let tools = document.querySelectorAll(".sidebar li:not(.categoryTitle)");
+// ------------------ SIDEBAR SEARCH ------------------ //
+document.getElementById("toolSearch").addEventListener("keyup", function () {
+    const filter = this.value.toLowerCase();
+    const tools = document.querySelectorAll(".sidebar li:not(.categoryTitle)");
     tools.forEach(t => t.style.display = t.textContent.toLowerCase().includes(filter) ? "block" : "none");
 });
 
-// ---------------------- TOOLS FUNCTIONS ----------------------
+// ------------------ MOBILE BANNER ------------------ //
+if(/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+    const banner = document.getElementById("mobileAlertBanner");
+    banner.style.display = "block";
+    document.getElementById("closeBanner").onclick = () => banner.style.display = "none";
+}
+
+// ------------------ TOOL FUNCTIONS ------------------ //
 
 // 1. Password Generator
-function generatePassword(){
-    let length = document.getElementById("passLength").value || 12;
-    let chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&*";
+function generatePassword() {
+    const length = document.getElementById("passLength").value || 12;
+    const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+";
     let pass = "";
-    for(let i=0;i<length;i++) pass += chars.charAt(Math.floor(Math.random()*chars.length));
+    for(let i=0; i<length; i++) pass += chars.charAt(Math.floor(Math.random()*chars.length));
     document.getElementById("passwordOutput").value = pass;
 }
 
 // 2. Password Strength Checker
 document.getElementById("passwordCheck")?.addEventListener("input", function(){
-    let val = this.value, strength = "Weak";
+    const val = this.value;
+    let strength = "Weak";
     if(val.length > 8) strength = "Medium";
     if(val.match(/[A-Z]/) && val.match(/[0-9]/) && val.match(/[@$!%*?&]/)) strength = "Strong";
     document.getElementById("strengthResult").innerText = strength;
@@ -59,116 +68,179 @@ document.getElementById("charInput")?.addEventListener("input", function(){
 function toUpper(){ document.getElementById("caseText").value = document.getElementById("caseText").value.toUpperCase(); }
 function toLower(){ document.getElementById("caseText").value = document.getElementById("caseText").value.toLowerCase(); }
 
-// 6. Alternate Case
-function alternateCase(){
-    let text = document.getElementById("altText").value;
-    let result = text.split("").map((c,i) => i % 2 === 0 ? c.toUpperCase() : c.toLowerCase()).join("");
-    document.getElementById("altResult").innerText = result;
-}
-
-// 7. Text Reverser
-function reverseText(){
-    let t = document.getElementById("reverseText").value;
+// 6. Text Reverser
+function reverseText(){ 
+    const t = document.getElementById("reverseText").value;
     document.getElementById("reverseResult").innerText = t.split("").reverse().join("");
 }
 
-// 8. Remove Duplicate Lines
+// 7. Remove Duplicate Lines
 function removeDuplicates(){
-    let t = document.getElementById("duplicateText").value;
+    const t = document.getElementById("duplicateText").value;
     document.getElementById("duplicateResult").value = [...new Set(t.split("\n"))].join("\n");
 }
 
-// 9. Random Number Generator
+// 8. Random Number Generator
 function randomNumber(){
-    let min = parseInt(document.getElementById("min")?.value) || 0;
-    let max = parseInt(document.getElementById("max")?.value) || 100;
-    let r = Math.floor(Math.random()*(max-min+1))+min;
+    const min = parseInt(document.getElementById("min").value) || 0;
+    const max = parseInt(document.getElementById("max").value) || 100;
+    const r = Math.floor(Math.random()*(max-min+1)) + min;
     document.getElementById("randomResult").innerText = r;
 }
 
-// 10. Color Generator
+// 9. Color Generator
 function generateColor(){
-    let c = "#"+Math.floor(Math.random()*16777215).toString(16);
+    const c = "#"+Math.floor(Math.random()*16777215).toString(16);
     document.getElementById("colorBox").style.background = c;
     document.getElementById("colorCode").innerText = c;
 }
 
-// 11. Translator
+// 10. Translator (using LibreTranslate API)
 async function translateText(){
-    let text = document.getElementById("textToTranslate").value;
-    let target = document.getElementById("targetLang").value;
-    if(!text){ document.getElementById("translatedResult").value="Enter text to translate."; return; }
-    document.getElementById("translatedResult").value = "Translating...";
+    const text = document.getElementById("textToTranslate").value;
+    const target = document.getElementById("targetLang").value;
+    if(!text){ document.getElementById("translatedResult").value="Enter text."; return; }
+    document.getElementById("translatedResult").value="Translating...";
     try{
-        let res = await fetch("https://libretranslate.de/translate", {
+        const res = await fetch("https://libretranslate.de/translate",{
             method:"POST",
-            body: JSON.stringify({q:text, source:"auto", target:target, format:"text"}),
-            headers: {"Content-Type":"application/json"}
+            body:JSON.stringify({q:text,source:"auto",target:target,format:"text"}),
+            headers:{"Content-Type":"application/json"}
         });
-        let data = await res.json();
+        const data = await res.json();
         document.getElementById("translatedResult").value = data.translatedText;
-    } catch(e){ document.getElementById("translatedResult").value="Translation failed."; console.log(e);}
+    } catch(e){
+        document.getElementById("translatedResult").value="Translation failed.";
+        console.error(e);
+    }
 }
 
-// 12. Hashtag Generator
+// 11. Emoji Translator
+function emojiTranslate(){
+    const txt = document.getElementById("emojiText").value;
+    const emojis = {happy:"😄", sad:"😢", love:"❤️", cat:"🐱", dog:"🐶", fire:"🔥"};
+    let result = txt.split(" ").map(w=>emojis[w.toLowerCase()]||w).join(" ");
+    document.getElementById("emojiResult").innerText = result;
+}
+
+// 12. Acronym Generator
+function generateAcronym(){
+    const phrase = document.getElementById("acronymText").value;
+    if(!phrase){ document.getElementById("acronymResult").innerText="Enter text."; return; }
+    const acronym = phrase.split(/\s+/).map(w=>w[0].toUpperCase()).join("");
+    document.getElementById("acronymResult").innerText = acronym;
+}
+
+// 13. Hashtag Generator
 function generateHashtags(){
-    let keyword = document.getElementById("hashtagKeyword").value.trim();
-    let platform = document.getElementById("platform").value;
-    if(!keyword){ document.getElementById("hashtagResult").value="Enter a keyword."; return; }
-    let base = ["#"+keyword,"#"+keyword+"trend","#"+keyword+"viral","#"+keyword+"content","#"+keyword+"creator"];
+    const keyword = document.getElementById("hashtagKeyword").value.trim();
+    const platform = document.getElementById("platform").value;
+    if(!keyword){document.getElementById("hashtagResult").value="Enter keyword."; return;}
+    const base = ["#"+keyword,"#"+keyword+"trend","#"+keyword+"viral","#"+keyword+"content","#"+keyword+"creator"];
     let tags = [];
-    if(platform==="tiktok") tags = ["#fyp","#foryou","#foryoupage","#viral","#tiktoktrend"];
-    if(platform==="youtube") tags = ["#youtube","#youtuber","#video","#subscribe","#ytshorts"];
-    if(platform==="instagram") tags = ["#instagram","#instagood","#instadaily","#reels","#explorepage"];
-    if(platform==="twitter") tags = ["#twitter","#xtrend","#viral","#trending","#tweet"];
+    if(platform==="tiktok") tags=["#fyp","#foryou","#foryoupage","#viral","#tiktoktrend"];
+    if(platform==="youtube") tags=["#youtube","#youtuber","#video","#subscribe","#ytshorts"];
+    if(platform==="instagram") tags=["#instagram","#instagood","#instadaily","#reels","#explorepage"];
+    if(platform==="twitter") tags=["#twitter","#xtrend","#viral","#trending","#tweet"];
     document.getElementById("hashtagResult").value = base.concat(tags).join(" ");
 }
 
-// 13. Fake Identity Generator
+// 14. Fake Identity Generator
 async function generateIdentity(){
-    let country = document.getElementById("identityCountry").value;
-    let gender = document.getElementById("identityGender").value;
-    let minAge = parseInt(document.getElementById("minAge").value) || 0;
-    let maxAge = parseInt(document.getElementById("maxAge").value) || 100;
-    let url = `https://randomuser.me/api/?results=1${country ? "&nat="+country : ""}${gender ? "&gender="+gender : ""}`;
-    let res = await fetch(url); 
-    let data = await res.json();
-    let user = data.results[0];
-    let age = user.dob.age;
-    if(age < minAge || age > maxAge) return generateIdentity();
-    let name=user.name.first+" "+user.name.last; let phone=user.phone; let email=user.email;
-    let street=user.location.street.number+" "+user.location.street.name;
-    let city=user.location.city; let state=user.location.state; let countryName=user.location.country; let postcode=user.location.postcode;
-    let picture=user.picture.large;
-    document.getElementById("identityResult").innerHTML = `
-        <img src="${picture}" style="border-radius:50%;width:150px;height:150px;">
-        <p><b>Name:</b> ${name}</p>
-        <p><b>Gender:</b> ${user.gender}</p>
-        <p><b>Age:</b> ${age}</p>
-        <p><b>Email:</b> ${email}</p>
-        <p><b>Phone:</b> ${phone}</p>
-        <p><b>Street:</b> ${street}</p>
-        <p><b>City:</b> ${city}</p>
-        <p><b>State:</b> ${state}</p>
-        <p><b>Country:</b> ${countryName}</p>
-        <p><b>Postcode:</b> ${postcode}</p>`;
+    const country = document.getElementById("identityCountry").value;
+    const gender = document.getElementById("identityGender").value;
+    const minAge = parseInt(document.getElementById("minAge").value) || 0;
+    const maxAge = parseInt(document.getElementById("maxAge").value) || 120;
+    try{
+        const res = await fetch(`https://randomuser.me/api/?nat=${country || ''}&gender=${gender || ''}`);
+        const data = await res.json();
+        const user = data.results[0];
+        const age = user.dob.age;
+        if(age < minAge || age > maxAge) return generateIdentity();
+        document.getElementById("identityResult").innerHTML = `
+            <img src="${user.picture.large}" style="border-radius:50%;"><p><b>Name:</b> ${user.name.first} ${user.name.last}</p>
+            <p><b>Gender:</b> ${user.gender}</p>
+            <p><b>Age:</b> ${age}</p>
+            <p><b>Email:</b> ${user.email}</p>
+            <p><b>Phone:</b> ${user.phone}</p>
+            <p><b>Location:</b> ${user.location.city}, ${user.location.state}, ${user.location.country}</p>
+        `;
+    } catch(e){ console.error(e); document.getElementById("identityResult").innerText="Failed to fetch user.";}
 }
 
-// 14. Video Downloader (Dummy)
-function downloadVideo(){
-    let url = document.getElementById("videoURL").value.trim();
-    if(!url){ document.getElementById("downloadStatus").innerText="Enter video URL"; return; }
-    document.getElementById("downloadStatus").innerText="Downloading... (demo only)";
+// 15. YouTube Thumbnail Downloader
+function youtubeThumbnail(){
+    const url = document.getElementById("ytUrl").value;
+    if(!url){ document.getElementById("ytThumbnailResult").innerHTML="Enter YouTube URL."; return; }
+    const idMatch = url.match(/(?:v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+    if(!idMatch){ document.getElementById("ytThumbnailResult").innerHTML="Invalid URL."; return; }
+    const thumbUrl = `https://img.youtube.com/vi/${idMatch[1]}/maxresdefault.jpg`;
+    document.getElementById("ytThumbnailResult").innerHTML = `<img src="${thumbUrl}" style="max-width:100%;">`;
 }
 
-// ------------------ PLACEHOLDER FOR 100+ TOOLS ------------------
-// You can continue adding more tools here using the same format:
-// Each tool gets a function, its toolPage container, and is linked in sidebar.
+// 16. Video Downloader Demo
+function videoDownloadDemo(){
+    document.getElementById("videoDownloadResult").innerText="Video downloader demo. Full functionality requires server-side support.";
+}
 
-// Example:
-// function qrCodeGenerator(){ ... }
-// function imageConverter(){ ... }
-// function sitemapGenerator(){ ... }
+// 17. TikTok Caption Generator
+function tiktokCaptionGen(){
+    const topic = document.getElementById("captionTopic").value.trim();
+    if(!topic){document.getElementById("captionResult").innerText="Enter topic."; return;}
+    const captions = [
+        `Can't believe this ${topic}! 😲`,
+        `When ${topic} happens... 😂`,
+        `${topic} vibes only ✨`,
+        `Who else loves ${topic}? ❤️`
+    ];
+    document.getElementById("captionResult").innerText = captions[Math.floor(Math.random()*captions.length)];
+}
 
-// All tools should be wrapped in a container with id="<toolID>" and class="toolPage centerContent"
+// 18. Instagram Bio Generator
+function igBioGen(){
+    const keyword = document.getElementById("bioKeyword").value.trim();
+    if(!keyword){document.getElementById("bioResult").innerText="Enter keyword."; return;}
+    const bios = [
+        `${keyword} lover ❤️`,
+        `Official ${keyword} account`,
+        `${keyword} enthusiast ✨`,
+        `Living the ${keyword} life 😎`
+    ];
+    document.getElementById("bioResult").innerText = bios[Math.floor(Math.random()*bios.length)];
+}
 
+// 19. Meta Tag Generator
+function metaTagGen(){
+    const title = document.getElementById("metaTitle").value;
+    const desc = document.getElementById("metaDesc").value;
+    const keywords = document.getElementById("metaKeywords").value;
+    document.getElementById("metaResult").value = `<title>${title}</title>\n<meta name="description" content="${desc}">\n<meta name="keywords" content="${keywords}">`;
+}
+
+// 20. Daily Quote / Fortune
+function dailyQuote(){
+    const quotes = [
+        "You are stronger than you think.",
+        "Today is a perfect day for new beginnings.",
+        "Happiness is a choice.",
+        "Believe in yourself and all that you are.",
+        "Your potential is endless."
+    ];
+    document.getElementById("fortuneResult").innerText = quotes[Math.floor(Math.random()*quotes.length)];
+}
+
+// 21. Zodiac Sign Calculator
+function zodiacCalc(){
+    const day = parseInt(document.getElementById("birthDay").value);
+    const month = parseInt(document.getElementById("birthMonth").value);
+    if(!day || !month){document.getElementById("zodiacResult").innerText="Enter valid date."; return;}
+    const zodiacSigns = [
+        "Capricorn","Aquarius","Pisces","Aries","Taurus","Gemini","Cancer","Leo","Virgo","Libra","Scorpio","Sagittarius"
+    ];
+    const lastDays = [19,18,20,19,20,20,22,22,22,22,21,21];
+    const sign = day > lastDays[month-1] ? zodiacSigns[month] : zodiacSigns[month-1];
+    document.getElementById("zodiacResult").innerText = sign;
+}
+
+// ------------------ ADDITIONAL TOOLS ------------------ //
+// You can extend more tools below following the same pattern, all will display centered and functional
