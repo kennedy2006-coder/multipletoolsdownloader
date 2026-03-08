@@ -205,32 +205,39 @@ item.style.display = "none";
 });
 
 // translator 
+async function translateText() {
+    let text = document.getElementById("textToTranslate").value;
+    let target = document.getElementById("targetLang").value;
+    let result = document.getElementById("translatedResult");
 
-function translateText(){
+    if(!text){
+        result.value = "Enter text to translate.";
+        return;
+    }
 
-let text = document.getElementById("textToTranslate").value;
-let target = document.getElementById("targetLang").value;
-let result = document.getElementById("translatedResult");
+    result.value = "Translating...";
 
-if(!text){
-result.value = "Enter text to translate.";
-return;
+    try {
+        let res = await fetch("https://libretranslate.de/translate", {
+            method: "POST",
+            body: JSON.stringify({
+                q: text,
+                source: "auto",
+                target: target,
+                format: "text"
+            }),
+            headers: {"Content-Type": "application/json"}
+        });
+
+        let data = await res.json();
+        result.value = data.translatedText;
+    } catch (err) {
+        result.value = "Translation failed.";
+        console.log(err);
+    }
 }
 
-result.value = "Translating...";
 
-fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=auto|${target}`)
-.then(res => res.json())
-.then(data => {
-
-result.value = data.responseData.translatedText;
-
-})
-.catch(()=>{
-result.value = "Translation failed.";
-});
-
-}
 
 
 
@@ -584,6 +591,7 @@ document.getElementById("strengthResult").innerText=strength;
 
 
 });
+
 
 
 
