@@ -1,23 +1,257 @@
-body{margin:0;font-family:Arial;background:#f4f4f4;}
-.app{display:flex;height:100vh;}
-.sidebar{width:250px;background:#111;color:white;padding:20px;overflow-y:auto;}
-.sidebar h2{text-align:center;}
-.sidebar input{width:100%;padding:8px;margin-bottom:15px;}
-.sidebar ul{list-style:none;padding:0;}
-.sidebar li{padding:10px;cursor:pointer;border-bottom:1px solid #333;}
-.sidebar li:hover{background:#333;}
-.sidebar .categoryTitle{font-weight:bold;font-size:14px;color:#ffcc00;cursor:default;}
-.sidebar button{margin-top:20px;width:100%;padding:10px;border:none;background:#2c3e50;color:white;}
-.main{flex:1;padding:40px;overflow-y:auto;display:flex;justify-content:center;align-items:flex-start;flex-direction:column;}
-.toolPage{display:none;background:white;padding:25px;border-radius:10px;box-shadow:0 0 10px rgba(0,0,0,0.1);width:100%;max-width:600px;}
-.centerContent{text-align:center;}
-input,textarea,button{width:100%;padding:10px;margin-top:10px;}
-button{background:#2c3e50;color:white;border:none;border-radius:5px;cursor:pointer;}
-#colorBox{height:50px;margin-top:10px;border-radius:5px;}
-.dark{background:#1e1e1e;color:white;}
-.dark .toolPage{background:#2c2c2c;}
-footer{background:#111;color:white;text-align:center;padding:15px 0;margin-top:20px;font-size:14px;border-top:1px solid #333;}
-.dark footer{background:#222;color:#ddd;}
-#mobileAlertBanner{display:none;position:fixed;top:0;left:0;width:100%;background:#ffcc00;color:#000;text-align:center;padding:10px;font-weight:bold;z-index:9999;}
-#closeBanner{margin-left:15px;cursor:pointer;}
-@media(max-width:768px){.app{flex-direction:column;}.sidebar{width:100%;height:auto;}.main{padding:20px;}}
+/* ---------- GLOBAL STYLES ---------- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    color: #111;
+}
+
+.dark {
+    background: #1e1e1e;
+    color: #fff;
+}
+
+/* ---------- APP LAYOUT ---------- */
+.app {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+}
+
+/* ---------- SIDEBAR ---------- */
+.sidebar {
+    width: 250px;
+    background: #111;
+    color: white;
+    padding: 20px;
+    overflow-y: auto;
+    flex-shrink: 0;
+}
+
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 22px;
+    color: #ffcc00;
+}
+
+.sidebar input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #333;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #333;
+    transition: background 0.2s;
+}
+
+.sidebar li:hover {
+    background: #333;
+}
+
+.sidebar .categoryTitle {
+    font-weight: bold;
+    font-size: 14px;
+    color: #ffcc00;
+    cursor: default;
+    padding-top: 15px;
+    padding-bottom: 5px;
+}
+
+.sidebar button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background: #2c3e50;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* ---------- MAIN CONTENT ---------- */
+.main {
+    flex: 1;
+    padding: 40px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* centers the toolPage horizontally */
+    justify-content: flex-start;
+    width: 100%;
+    background: #f4f4f4;
+}
+
+/* ---------- TOOL CONTAINER ---------- */
+.toolPage {
+    display: none;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.15);
+    width: 100%;
+    max-width: 900px; /* optional: keeps very large screens neat */
+    margin-bottom: 30px;
+}
+
+.dark .toolPage {
+    background: #2c2c2c;
+}
+
+/* ---------- FORM ELEMENTS ---------- */
+input, textarea, select, button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+button {
+    background: #2c3e50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+/* ---------- COLOR BOX ---------- */
+#colorBox {
+    height: 50px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+/* ---------- FAKE IDENTITY GENERATOR ---------- */
+#identityGenerator label {
+    display: block;
+    margin-top: 12px;
+    font-weight: bold;
+}
+
+#identityGenerator select,
+#identityGenerator input {
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+#identityResult {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    background: #f9f9f9;
+}
+
+.dark #identityResult {
+    background: #333;
+}
+
+#identityResult img {
+    width: 120px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.2);
+}
+
+#identityResult p {
+    margin: 6px 0;
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+    background: #111;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 20px;
+    font-size: 14px;
+    border-top: 1px solid #333;
+}
+
+.dark footer {
+    background: #222;
+    color: #ddd;
+}
+
+/* ---------- MOBILE RESPONSIVE ---------- */
+@media(max-width:768px){
+    .app {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+    }
+
+    .main {
+        padding: 20px;
+        width: 100%;
+    }
+
+    .toolPage {
+        width: 100%;
+    }
+}
+
+/* ---------- MOBILE TOP BANNER ---------- */
+#mobileAlertBanner {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #ffcc00;
+    color: #000;
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+    z-index: 9999;
+}
+
+#closeBanner {
+    margin-left: 15px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* ---------- INPUTS & BUTTONS PROFESSIONAL ---------- */
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0,123,255,0.3);
+}
+
+button:focus {
+    outline: none;
+}
