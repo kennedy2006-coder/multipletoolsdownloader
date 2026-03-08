@@ -136,7 +136,48 @@ font-size:16px;
 transform:scale(0.95);
 }
 
+/* FAKE IDENTITY GENERATOR */
 
+#identityGenerator label{
+display:block;
+margin-top:12px;
+font-weight:bold;
+}
+
+#identityGenerator select,
+#identityGenerator input{
+width:100%;
+padding:10px;
+margin-top:5px;
+border:1px solid #ccc;
+border-radius:5px;
+}
+
+#identityGenerator button{
+margin-top:15px;
+}
+
+#identityResult{
+margin-top:20px;
+padding:15px;
+border-radius:8px;
+background:#f9f9f9;
+}
+
+.dark #identityResult{
+background:#333;
+}
+
+#identityResult img{
+width:120px;
+border-radius:50%;
+margin-bottom:15px;
+box-shadow:0 0 8px rgba(0,0,0,0.2);
+}
+
+#identityResult p{
+margin:6px 0;
+}
 
 footer{
     background:#111;
@@ -152,4 +193,5 @@ footer{
     background:#222;
     color:#ddd;
 }
+
 
