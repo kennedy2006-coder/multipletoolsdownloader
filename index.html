@@ -446,40 +446,44 @@ readonly></textarea>
      </div>
 
 <!----Name generator---->
-     
+
+<!-- FAKE IDENTITY GENERATOR -->
 <div id="identityGenerator" class="toolPage" style="display:none">
 
-<select id="country">
-<option value="">Any Country</option>
+<h2>Fake Identity Generator</h2>
+
+<label>Country</label>
+<select id="identityCountry">
+<option value="">Random Country</option>
 <option value="us">USA</option>
 <option value="gb">UK</option>
 <option value="fr">France</option>
 <option value="de">Germany</option>
-<option value="ng">Nigeria</option>
 <option value="br">Brazil</option>
-<option value="in">India</option>
+<option value="au">Australia</option>
+<option value="ca">Canada</option>
 </select>
 
-<select id="gender">
-<option value="">Any Gender</option>
+<label>Gender</label>
+<select id="identityGender">
+<option value="">Random</option>
 <option value="male">Male</option>
 <option value="female">Female</option>
 </select>
 
-<select id="ageRange">
-<option value="">Any Age</option>
-<option value="child">Child</option>
-<option value="teen">Teen</option>
-<option value="adult">Adult</option>
-<option value="senior">Senior</option>
-</select>
+<label>Minimum Age</label>
+<input type="number" id="minAge" placeholder="Example: 18">
 
-<button onclick="generateName()">Generate Name</button>
+<label>Maximum Age</label>
+<input type="number" id="maxAge" placeholder="Example: 60">
 
-<p id="nameResult"></p>
+<button onclick="generateIdentity()">Generate Identity</button>
 
+<div id="identityResult"></div>
 
 </div>
+
+
      
 <!-- DOWNLOAD -->
 <div id="downloader" class="toolPage" style="display:none">
@@ -515,7 +519,7 @@ placeholder="Paste TikTok / Instagram / Facebook / X link here">
     };
   }
      </script>
-     <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+     
 <!-- FOOTER -->
 
 <footer>
@@ -525,6 +529,7 @@ placeholder="Paste TikTok / Instagram / Facebook / X link here">
 
 
 </html>
+
 
 
 
