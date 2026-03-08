@@ -1,173 +1,259 @@
-// ------------------ UTILITY FUNCTIONS ------------------ //
-
-// Show selected tool
-function showTool(id){
-    let pages=document.querySelectorAll(".toolPage");
-    pages.forEach(p=>p.style.display="none");
-    let tool=document.getElementById(id);
-    if(!tool){
-        console.warn("Tool not found:", id);
-        return;
+// ----------------------- SHOW TOOL -----------------------
+function showTool(id) {
+    let pages = document.querySelectorAll(".toolPage");
+    pages.forEach(p => p.style.display = "none");
+    const tool = document.getElementById(id);
+    if(tool){
+        tool.style.display = "flex"; // display flex for centering
+        tool.scrollIntoView({behavior:"smooth", block:"center"}); // center content vertically
     }
-    tool.style.display="flex";
 }
+window.onload = function() { showTool("home"); };
 
-// Initialize home on load
-window.onload=function(){ showTool("home"); }
+// ----------------------- DARK MODE -----------------------
+function toggleDark() { document.body.classList.toggle("dark"); }
 
-// Toggle Dark Mode
-function toggleDark(){ document.body.classList.toggle("dark"); }
-
-// Sidebar Search
-document.getElementById("toolSearch").addEventListener("keyup",function(){
-    let filter=this.value.toLowerCase();
-    let tools=document.querySelectorAll(".sidebar li:not(.categoryTitle)");
-    tools.forEach(t=>t.style.display=t.textContent.toLowerCase().includes(filter)?"block":"none");
+// ----------------------- SIDEBAR SEARCH -----------------------
+document.getElementById("toolSearch").addEventListener("keyup", function(){
+    let filter = this.value.toLowerCase();
+    let tools = document.querySelectorAll(".sidebar li:not(.categoryTitle)");
+    tools.forEach(t => t.style.display = t.textContent.toLowerCase().includes(filter) ? "block" : "none");
 });
 
-// ------------------ TOOL FUNCTIONS ------------------ //
-
-// 1. Password Generator
-function generatePassword(){
-    let length=parseInt(document.getElementById("passLength").value)||12;
-    let chars="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%";
-    let pass="";
-    for(let i=0;i<length;i++) pass+=chars.charAt(Math.floor(Math.random()*chars.length));
-    document.getElementById("passwordOutput").value=pass;
+// ----------------------- PASSWORD GENERATOR -----------------------
+function generatePassword() {
+    let length = parseInt(document.getElementById("passLength")?.value) || 12;
+    let chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+{}[]";
+    let pass = "";
+    for(let i=0;i<length;i++) pass += chars.charAt(Math.floor(Math.random()*chars.length));
+    if(document.getElementById("passwordOutput")) document.getElementById("passwordOutput").value = pass;
 }
 
-// 2. Password Strength Checker
-document.getElementById("passwordCheck")?.addEventListener("input",function(){
-    let val=this.value,strength="Weak";
-    if(val.length>8) strength="Medium";
-    if(val.match(/[A-Z]/)&&val.match(/[0-9]/)&&val.match(/[@$!%*?&]/)) strength="Strong";
-    document.getElementById("strengthResult").innerText=strength;
+// ----------------------- PASSWORD STRENGTH -----------------------
+document.getElementById("passwordCheck")?.addEventListener("input", function(){
+    let val = this.value;
+    let strength = "Weak";
+    if(val.length > 8) strength = "Medium";
+    if(val.match(/[A-Z]/) && val.match(/[0-9]/) && val.match(/[@$!%*?&]/)) strength = "Strong";
+    if(document.getElementById("strengthResult")) document.getElementById("strengthResult").innerText = strength;
 });
 
-// 3. Word Counter
-document.getElementById("wordText")?.addEventListener("input",function(){
-    document.getElementById("wordCount").innerText=this.value.trim()?this.value.trim().split(/\s+/).length:0;
+// ----------------------- WORD COUNTER -----------------------
+document.getElementById("wordText")?.addEventListener("input", function(){
+    if(document.getElementById("wordCount"))
+        document.getElementById("wordCount").innerText = this.value.trim() ? this.value.trim().split(/\s+/).length : 0;
 });
 
-// 4. Character Counter
-document.getElementById("charInput")?.addEventListener("input",function(){
-    document.getElementById("charCount").innerText=this.value.length;
+// ----------------------- CHARACTER COUNTER -----------------------
+document.getElementById("charInput")?.addEventListener("input", function(){
+    if(document.getElementById("charCount")) document.getElementById("charCount").innerText = this.value.length;
 });
 
-// 5. Case Converter
-function toUpper(){document.getElementById("caseText").value=document.getElementById("caseText").value.toUpperCase();}
-function toLower(){document.getElementById("caseText").value=document.getElementById("caseText").value.toLowerCase();}
-function toAlternate(){ 
-    let t=document.getElementById("caseText").value;
-    let res=""; for(let i=0;i<t.length;i++){res+=(i%2==0)?t[i].toUpperCase():t[i].toLowerCase();}
-    document.getElementById("caseText").value=res;
+// ----------------------- CASE CONVERTER -----------------------
+function toUpper() { document.getElementById("caseText").value = document.getElementById("caseText").value.toUpperCase(); }
+function toLower() { document.getElementById("caseText").value = document.getElementById("caseText").value.toLowerCase(); }
+
+// ----------------------- TEXT REVERSER -----------------------
+function reverseText() { 
+    let t = document.getElementById("reverseText").value;
+    if(document.getElementById("reverseResult")) document.getElementById("reverseResult").innerText = t.split("").reverse().join(""); 
 }
 
-// 6. Text Reverser
-function reverseText(){let t=document.getElementById("reverseText").value;document.getElementById("reverseResult").innerText=t.split("").reverse().join("");}
-
-// 7. Remove Duplicates
-function removeDuplicates(){let t=document.getElementById("duplicateText").value;document.getElementById("duplicateResult").value=[...new Set(t.split("\n"))].join("\n");}
-
-// 8. Random Number Generator
-function randomNumber(){
-    let min=parseInt(document.getElementById("min").value)||0;
-    let max=parseInt(document.getElementById("max").value)||100;
-    if(min>max){[min,max]=[max,min];}
-    let r=Math.floor(Math.random()*(max-min+1))+min;
-    document.getElementById("randomResult").innerText=r;
+// ----------------------- REMOVE DUPLICATES -----------------------
+function removeDuplicates() {
+    let t = document.getElementById("duplicateText").value;
+    if(document.getElementById("duplicateResult"))
+        document.getElementById("duplicateResult").value = [...new Set(t.split("\n"))].join("\n");
 }
 
-// 9. Color Generator
-function generateColor(){
-    let c="#"+Math.floor(Math.random()*16777215).toString(16).padStart(6,'0');
-    document.getElementById("colorBox").style.background=c;
-    document.getElementById("colorCode").innerText=c;
+// ----------------------- RANDOM NUMBER GENERATOR -----------------------
+function randomNumber() {
+    let min = parseInt(document.getElementById("min")?.value) || 0;
+    let max = parseInt(document.getElementById("max")?.value) || 100;
+    let r = Math.floor(Math.random()*(max-min+1)) + min;
+    if(document.getElementById("randomResult")) document.getElementById("randomResult").innerText = r;
 }
 
-// 10. Translator
-async function translateText(){
-    let text=document.getElementById("textToTranslate").value;
-    let target=document.getElementById("targetLang").value;
-    if(!text){document.getElementById("translatedResult").value="Enter text to translate."; return;}
-    document.getElementById("translatedResult").value="Translating...";
-    try{
-        let res=await fetch("https://libretranslate.de/translate",{
+// ----------------------- COLOR GENERATOR -----------------------
+function generateColor() {
+    let c = "#" + Math.floor(Math.random()*16777215).toString(16);
+    if(document.getElementById("colorBox")) document.getElementById("colorBox").style.background = c;
+    if(document.getElementById("colorCode")) document.getElementById("colorCode").innerText = c;
+}
+
+// ----------------------- LANGUAGE TRANSLATOR -----------------------
+async function translateText() {
+    let text = document.getElementById("textToTranslate")?.value;
+    let target = document.getElementById("targetLang")?.value;
+    let result = document.getElementById("translatedResult");
+    if(!text){ result.value = "Enter text to translate."; return; }
+    result.value = "Translating...";
+    try {
+        let res = await fetch("https://libretranslate.de/translate", {
             method:"POST",
             body:JSON.stringify({q:text,source:"auto",target:target,format:"text"}),
             headers:{"Content-Type":"application/json"}
         });
-        let data=await res.json();
-        document.getElementById("translatedResult").value=data.translatedText;
-    }catch(e){document.getElementById("translatedResult").value="Translation failed."; console.log(e);}
+        let data = await res.json();
+        result.value = data.translatedText;
+    } catch(e){ result.value = "Translation failed."; console.log(e); }
 }
 
-// 11. Hashtag Generator
+// ----------------------- HASHTAG GENERATOR -----------------------
 function generateHashtags(){
-    let keyword=document.getElementById("hashtagKeyword").value.trim();
-    let platform=document.getElementById("platform").value;
-    if(!keyword){document.getElementById("hashtagResult").value="Enter a keyword."; return;}
-    let base=["#"+keyword,"#"+keyword+"Trend","#"+keyword+"Viral","#"+keyword+"Content","#"+keyword+"Creator"];
-    let tags=[];
+    let keyword = document.getElementById("hashtagKeyword")?.value.trim();
+    let platform = document.getElementById("platform")?.value;
+    if(!keyword){ document.getElementById("hashtagResult").value="Enter a keyword."; return; }
+    let base = ["#"+keyword,"#"+keyword+"trend","#"+keyword+"viral","#"+keyword+"content","#"+keyword+"creator"];
+    let tags = [];
     if(platform==="tiktok") tags=["#fyp","#foryou","#foryoupage","#viral","#tiktoktrend"];
     if(platform==="youtube") tags=["#youtube","#youtuber","#video","#subscribe","#ytshorts"];
     if(platform==="instagram") tags=["#instagram","#instagood","#instadaily","#reels","#explorepage"];
     if(platform==="twitter") tags=["#twitter","#xtrend","#viral","#trending","#tweet"];
-    document.getElementById("hashtagResult").value=base.concat(tags).join(" ");
+    document.getElementById("hashtagResult").value = base.concat(tags).join(" ");
 }
 
-// 12. Fake Identity Generator
+// ----------------------- FAKE IDENTITY GENERATOR -----------------------
 async function generateIdentity(){
-    let country=document.getElementById("identityCountry").value;
-    let gender=document.getElementById("identityGender").value;
-    let minAge=parseInt(document.getElementById("minAge").value)||0;
-    let maxAge=parseInt(document.getElementById("maxAge").value)||150;
-    let url="https://randomuser.me/api/?results=1"+(country?"&nat="+country:"")+(gender?"&gender="+gender:"");
-    let res=await fetch(url); let data=await res.json(); let user=data.results[0]; let age=user.dob.age;
-    if(age<minAge||age>maxAge) return generateIdentity();
-    let name=user.name.first+" "+user.name.last; let phone=user.phone; let email=user.email;
-    let street=user.location.street.number+" "+user.location.street.name; let city=user.location.city;
-    let state=user.location.state; let countryName=user.location.country; let postcode=user.location.postcode;
-    let picture=user.picture.large;
-    document.getElementById("identityResult").innerHTML=`
-        <img src="${picture}" style="border-radius:50%;width:120px;height:120px;">
-        <p><b>Name:</b> ${name}</p>
-        <p><b>Gender:</b> ${user.gender}</p>
-        <p><b>Age:</b> ${age}</p>
-        <p><b>Email:</b> ${email}</p>
-        <p><b>Phone:</b> ${phone}</p>
-        <p><b>Address:</b> ${street}, ${city}, ${state}, ${countryName} - ${postcode}</p>`;
+    let country = document.getElementById("identityCountry")?.value;
+    let gender = document.getElementById("identityGender")?.value;
+    let minAge = parseInt(document.getElementById("minAge")?.value);
+    let maxAge = parseInt(document.getElementById("maxAge")?.value);
+    let url = "https://randomuser.me/api/?results=1"+(country?"&nat="+country:"")+(gender?"&gender="+gender:"");
+    let res = await fetch(url);
+    let data = await res.json();
+    let user = data.results[0];
+    let age = user.dob.age;
+    if(minAge && age < minAge || maxAge && age > maxAge) return generateIdentity();
+    let name = user.name.first+" "+user.name.last;
+    let phone = user.phone;
+    let email = user.email;
+    let street = user.location.street.number+" "+user.location.street.name;
+    let city = user.location.city;
+    let state = user.location.state;
+    let countryName = user.location.country;
+    let postcode = user.location.postcode;
+    let picture = user.picture.large;
+    document.getElementById("identityResult").innerHTML = `<img src="${picture}" style="width:120px;border-radius:50%"><p><b>Name:</b> ${name}</p><p><b>Gender:</b> ${user.gender}</p><p><b>Age:</b> ${age}</p><p><b>Email:</b> ${email}</p><p><b>Phone:</b> ${phone}</p><p><b>Street:</b> ${street}</p><p><b>City:</b> ${city}</p><p><b>State:</b> ${state}</p><p><b>Country:</b> ${countryName}</p><p><b>Postcode:</b> ${postcode}</p>`;
 }
 
-// 13. QR Code Generator
-function generateQRCode(){
-    let text=document.getElementById("qrText").value;
-    if(!text) return alert("Enter text or URL");
-    let qr=document.getElementById("qrResult");
-    qr.innerHTML=`<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(text)}">`;
+// ----------------------- VIDEO DOWNLOADER -----------------------
+async function downloadVideo() {
+    let url = document.getElementById("videoURL")?.value.trim();
+    let status = document.getElementById("downloadStatus");
+    if(!url){ status.innerText = "Please paste a video link"; return; }
+    status.innerText = "Fetching video...";
+    try {
+        let res = await fetch(`https://api.fastsaverapi.com/v1/download?url=${encodeURIComponent(url)}&token=nVlsqPmMQ1EMfvWV`);
+        let data = await res.json();
+        if(data.result && data.result.response){
+            status.innerHTML = "Download ready:<br>";
+            let link = document.createElement("a");
+            link.href = data.result.response;
+            link.innerText = "Download Video";
+            link.target = "_blank";
+            status.appendChild(link);
+        } else status.innerText = "Download failed. Try another link.";
+    } catch(e){ status.innerText = "API error occurred."; console.log(e); }
 }
 
-// 14. URL Encoder / Decoder
-function encodeURL(){document.getElementById("urlResult").value=encodeURIComponent(document.getElementById("urlInput").value);}
-function decodeURL(){document.getElementById("urlResult").value=decodeURIComponent(document.getElementById("urlInput").value);}
+// ----------------------- URL ENCODE/DECODE -----------------------
+function encodeURL(){ let t=document.getElementById("urlText").value; document.getElementById("urlResult").innerText=encodeURIComponent(t); }
+function decodeURL(){ let t=document.getElementById("urlText").value; document.getElementById("urlResult").innerText=decodeURIComponent(t); }
 
-// 15. Random Quote / Fortune
-async function getFortune(){
-    try{
-        let res=await fetch("https://api.quotable.io/random");
-        let data=await res.json();
-        document.getElementById("fortuneResult").innerText=`"${data.content}" — ${data.author}`;
-    }catch(e){document.getElementById("fortuneResult").innerText="Could not fetch quote.";}
+// ----------------------- IMAGE CONVERTER -----------------------
+function convertImage(){
+    let file=document.getElementById("imageInput")?.files[0];
+    let format=document.getElementById("format")?.value;
+    if(!file) return;
+    let reader=new FileReader();
+    reader.onload=function(e){
+        let img=new Image();
+        img.src=e.target.result;
+        img.onload=function(){
+            let canvas=document.createElement("canvas");
+            canvas.width=img.width; canvas.height=img.height;
+            canvas.getContext("2d").drawImage(img,0,0);
+            let a=document.getElementById("downloadImage");
+            a.href=canvas.toDataURL(format);
+            a.download="converted";
+            a.innerText="Download Image";
+        }
+    };
+    reader.readAsDataURL(file);
 }
 
-// 16. Meme Generator (Basic)
-function generateMeme(){
-    let text=document.getElementById("memeText").value;
-    document.getElementById("memeResult").innerHTML=`<div style="width:300px;height:300px;background:#eee;display:flex;justify-content:center;align-items:center;text-align:center;padding:10px;">${text}</div>`;
+// ----------------------- IMAGE TO PDF -----------------------
+function convertPDF(){
+    let file=document.getElementById("pdfFile")?.files[0];
+    if(!file) return;
+    let reader=new FileReader();
+    reader.onload=function(e){
+        let img=new Image();
+        img.src=e.target.result;
+        img.onload=function(){
+            let canvas=document.createElement("canvas");
+            canvas.width=img.width; canvas.height=img.height;
+            canvas.getContext("2d").drawImage(img,0,0);
+            let link=document.createElement("a");
+            link.download="converted.pdf";
+            link.href=canvas.toDataURL();
+            link.click();
+        }
+    };
+    reader.readAsDataURL(file);
 }
 
-// ------------------ MORE TOOLS CAN BE ADDED BELOW ------------------ //
-// 17. Image Converter, Image Compressor, Page Speed Analyzer, Keyword Density Checker, PDF Generator, Sitemap Generator, Robots.txt Generator
-// 18. YouTube Thumbnail Downloader, Video Downloader, TikTok Caption Generator, Instagram Bio Generator
-// 19. Fake Email Generator, Zodiac Sign Calculator, Random Name Generator
-// 20+. You can duplicate this structure and use fetch APIs or JS logic to add >200 tools
+// ----------------------- IMAGE COMPRESSOR -----------------------
+function compressImage(){
+    let file=document.getElementById("compressImage")?.files[0];
+    if(!file) return;
+    let reader=new FileReader();
+    reader.onload=function(e){
+        let img=new Image();
+        img.src=e.target.result;
+        img.onload=function(){
+            let canvas=document.createElement("canvas");
+            canvas.width=img.width/2; canvas.height=img.height/2;
+            canvas.getContext("2d").drawImage(img,0,0,canvas.width,canvas.height);
+            let a=document.getElementById("downloadCompressed");
+            a.href=canvas.toDataURL("image/jpeg",0.7);
+            a.download="compressed.jpg";
+            a.innerText="Download Image";
+        }
+    };
+    reader.readAsDataURL(file);
+}
+
+// ----------------------- TEXT TO SPEECH -----------------------
+function speak(){
+    let text=document.getElementById("speechText")?.value;
+    if(!text) return;
+    let speech=new SpeechSynthesisUtterance(text);
+    speechSynthesis.speak(speech);
+}
+
+// ----------------------- ALTERNATE CASE -----------------------
+function alternateCase(){
+    let t=document.getElementById("altText")?.value;
+    if(!t) return;
+    let res="";
+    for(let i=0;i<t.length;i++) res += i%2?t[i].toLowerCase():t[i].toUpperCase();
+    document.getElementById("altResult").innerText=res;
+}
+
+// ----------------------- YOUTUBE THUMBNAIL -----------------------
+function getThumbnail(){
+    let url=document.getElementById("ytlink")?.value;
+    if(!url) return;
+    let id=url.includes("v=")?url.split("v=")[1]:url.split("/").pop();
+    document.getElementById("thumbnailResult").src="https://img.youtube.com/vi/"+id+"/maxresdefault.jpg";
+}
+
+// ----------------------- META TAG GENERATOR -----------------------
+function generateMeta(){
+    let title=document.getElementById("metaTitle")?.value;
+    let desc=document.getElementById("metaDesc")?.value;
+    let keywords=document.getElementById("metaKeywords")?.value;
+    document.getElementById("metaResult").value=`<title>${title}</title>\n<meta name="description" content="${desc}">\n<meta name="keywords" content="${keywords}">`;
+        }
