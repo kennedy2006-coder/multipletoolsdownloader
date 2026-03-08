@@ -459,4 +459,43 @@ if(val.match(/[A-Z]/)&&val.match(/[0-9]/)&&val.match(/[@$!%*?&]/)) strength="Str
 
 document.getElementById("strengthResult").innerText=strength;
 
+
 });
+
+function downloadVideo(){
+
+let url = document.getElementById("videoURL").value.trim();
+let status = document.getElementById("downloadStatus");
+
+if(!url){
+status.innerText = "Please paste a video link";
+return;
+}
+
+status.innerText = "Fetching video...";
+
+fetch(`https://api.fastsaverapi.com/v1/download?url=${encodeURIComponent(url)}&token=nVlsqPmMQ1EMfvWV`)
+.then(res => res.json())
+.then(data => {
+
+if(data && data.result){
+
+status.innerText = "Download ready! Opening...";
+
+window.open(data.result.response, "_blank");
+
+}else{
+
+status.innerText = "Download failed. Try another video.";
+
+}
+
+})
+.catch(err => {
+
+console.error(err);
+status.innerText = "API error occurred.";
+
+});
+
+}
