@@ -592,8 +592,49 @@ document.getElementById("strengthResult").innerText=strength;
 
 });
 
+// hashtags 
 
+function generateHashtags(){
 
+let keyword = document.getElementById("hashtagKeyword").value.trim();
+let platform = document.getElementById("platform").value;
+
+if(!keyword){
+document.getElementById("hashtagResult").value = "Enter a keyword.";
+return;
+}
+
+let base = [
+"#"+keyword,
+"#"+keyword+"trend",
+"#"+keyword+"viral",
+"#"+keyword+"content",
+"#"+keyword+"creator"
+];
+
+let platformTags = [];
+
+if(platform==="tiktok"){
+platformTags=["#fyp","#foryou","#foryoupage","#viral","#tiktoktrend"];
+}
+
+if(platform==="youtube"){
+platformTags=["#youtube","#youtuber","#video","#subscribe","#ytshorts"];
+}
+
+if(platform==="instagram"){
+platformTags=["#instagram","#instagood","#instadaily","#reels","#explorepage"];
+}
+
+if(platform==="twitter"){
+platformTags=["#twitter","#xtrend","#viral","#trending","#tweet"];
+}
+
+let hashtags = base.concat(platformTags);
+
+document.getElementById("hashtagResult").value = hashtags.join(" ");
+
+}
 
 
 
