@@ -72,7 +72,9 @@
 <li onclick="showTool('alternate')">Alternate Case</li>
 
 <li onclick="showTool('urltool')">URL Encoder/Decoder</li>
+<li onclick="showTool('translator')">Language Translator</li>
 
+<li onclick="showTool('nameGenerator')">Name Generator</li>
 <li onclick="showTool('strength')">Password Strength Checker</li>
 </ul>
 
@@ -384,7 +386,37 @@
 </div>
 
 
-<!-- DOWNLOAD -->
+<!--Translator-->
+     <div id="translator" class="toolPage">
+
+<h2>Language Translator</h2>
+
+<div id="google_translate_element"></div>
+
+     </div>
+<!----Name generator---->
+     
+<div id="nameGenerator" class="toolPage">
+
+<h2>Random Name Generator</h2>
+
+<select id="country">
+<option value="">Any Country</option>
+<option value="us">USA</option>
+<option value="gb">UK</option>
+<option value="fr">France</option>
+<option value="de">Germany</option>
+<option value="ng">Nigeria</option>
+<option value="br">Brazil</option>
+<option value="in">India</option>
+</select>
+
+<button onclick="generateName()">Generate Name</button>
+
+<p id="nameResult"></p>
+
+</div>
+     
 <!-- DOWNLOAD -->
 <div id="downloader" class="toolPage" style="display:none">
 
@@ -419,6 +451,7 @@ placeholder="Paste TikTok / Instagram / Facebook / X link here">
     };
   }
      </script>
+     <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <!-- FOOTER -->
 
 <footer>
@@ -428,6 +461,7 @@ placeholder="Paste TikTok / Instagram / Facebook / X link here">
 
 
 </html>
+
 
 
 
