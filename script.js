@@ -209,7 +209,6 @@ item.style.display = "none";
 function translateText(){
 
 let text = document.getElementById("textToTranslate").value;
-let source = document.getElementById("sourceLang").value;
 let target = document.getElementById("targetLang").value;
 let result = document.getElementById("translatedResult");
 
@@ -220,27 +219,22 @@ return;
 
 result.value = "Translating...";
 
-fetch("https://translate.argosopentech.com/translate",{
-method:"POST",
-headers:{
-"Content-Type":"application/json"
-},
-body:JSON.stringify({
-q:text,
-source:source,
-target:target,
-format:"text"
-})
-})
-.then(res=>res.json())
-.then(data=>{
-result.value = data.translatedText;
+fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=auto|${target}`)
+.then(res => res.json())
+.then(data => {
+
+result.value = data.responseData.translatedText;
+
 })
 .catch(()=>{
-result.value = "Translation failed. Try again.";
+result.value = "Translation failed.";
 });
 
 }
+
+
+
+
 
 
 
@@ -573,6 +567,7 @@ document.getElementById("strengthResult").innerText=strength;
 
 
 });
+
 
 
 
