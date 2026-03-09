@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>UUID Generator</title>
+
+<link rel="stylesheet" href="../style.css">
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8718351899149472"
+crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>UUID Generator</h2>
+
+<div class="ad">Advertisement</div>
+
+<button onclick="generateUUID()">Generate</button>
+
+<input id="uuidOutput">
+
+</div>
+
+<script src="../script.js"></script>
+
+<script>
+
+function generateUUID(){
+
+document.getElementById("uuidOutput").value=
+crypto.randomUUID();
+
+}
+
+</script>
+
+</body>
+</html>

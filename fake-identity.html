@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Fake Identity Generator</title>
+
+<meta name="description" content="Generate fake identities with country, gender, age and multiple users.">
+
+<link rel="stylesheet" href="../style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<!-- ADSENSE -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8718351899149472"
+crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+<header>
+<h1>Fake Identity Generator</h1>
+</header>
+
+<div class="container">
+
+<div class="ad">Advertisement</div>
+
+<label>Country</label>
+
+<select id="country">
+<option value="">Random</option>
+
+<option value="us">United States</option>
+<option value="gb">United Kingdom</option>
+<option value="ca">Canada</option>
+<option value="au">Australia</option>
+<option value="fr">France</option>
+<option value="de">Germany</option>
+<option value="es">Spain</option>
+<option value="it">Italy</option>
+<option value="br">Brazil</option>
+<option value="mx">Mexico</option>
+<option value="nl">Netherlands</option>
+<option value="se">Sweden</option>
+<option value="no">Norway</option>
+<option value="fi">Finland</option>
+<option value="dk">Denmark</option>
+<option value="ie">Ireland</option>
+<option value="ch">Switzerland</option>
+<option value="nz">New Zealand</option>
+<option value="in">India</option>
+<option value="jp">Japan</option>
+<option value="kr">South Korea</option>
+<option value="cn">China</option>
+<option value="sg">Singapore</option>
+<option value="za">South Africa</option>
+</select>
+
+<label>Gender</label>
+
+<select id="gender">
+<option value="">Random</option>
+<option value="male">Male</option>
+<option value="female">Female</option>
+</select>
+
+<label>Age Range</label>
+
+<select id="age">
+<option value="">Random</option>
+<option value="young">18-30</option>
+<option value="adult">30-50</option>
+<option value="senior">50+</option>
+</select>
+
+<label>Number of Identities</label>
+
+<select id="count">
+<option value="1">1</option>
+<option value="3">3</option>
+<option value="5">5</option>
+<option value="10">10</option>
+</select>
+
+<button onclick="generateIdentity()">Generate</button>
+
+<button onclick="downloadJSON()">Download JSON</button>
+
+<div id="results"></div>
+
+<div class="ad">Advertisement</div>
+
+</div>
+
+<script src="../js/fake-identity.js"></script>
+
+</body>
+</html>

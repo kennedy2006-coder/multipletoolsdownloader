@@ -1,146 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 
-<title>MultiTools Hub</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Online MultiTools</title>
+
+<meta name="description" content="Free online multitools including JSON formatter, Base64 encoder, password generator and more.">
 
 <link rel="stylesheet" href="style.css">
 
-<!-- Adsense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8718351899149472"
 crossorigin="anonymous"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 
 <body>
 
-<header class="topbar">
+<header>
 
-<h1>MultiTools Hub</h1>
-
-<input id="search" placeholder="Search tools..." onkeyup="searchTools()">
+<h1>Free Online MultiTools</h1>
+<p>Simple tools for developers and creators</p>
 
 </header>
 
-
-
-<!-- CATEGORY GRID -->
-
 <div class="container">
 
+<div class="ad">
+Advertisement
+</div>
 
-<h2>Text Tools</h2>
+<div class="tool-grid">
 
-<div class="grid">
+<a href="tools/password.html" class="tool-card">Password Generator</a>
 
-<button onclick="showTool('word')">Word Counter</button>
-<button onclick="showTool('char')">Character Counter</button>
-<button onclick="showTool('duplicate')">Duplicate Line Remover</button>
-<button onclick="showTool('case')">Case Converter</button>
+<a href="tools/json.html" class="tool-card">JSON Formatter</a>
+
+<a href="tools/base64.html" class="tool-card">Base64 Encoder</a>
+
+<a href="tools/uuid.html" class="tool-card">UUID Generator</a>
+
+<a href="tools/fake-identity.html" class="tool-card">Fake Identity Generator</a>
 
 </div>
 
-
-<h2>Generators</h2>
-
-<div class="grid">
-
-<button onclick="showTool('password')">Password Generator</button>
-<button onclick="showTool('identity')">Fake Identity Generator</button>
-<button onclick="showTool('username')">Username Generator</button>
-<button onclick="showTool('qr')">QR Code Generator</button>
-
-</div>
-
-
-<h2>Social Media</h2>
-
-<div class="grid">
-
-<button onclick="showTool('hashtags')">Hashtag Generator</button>
-<button onclick="showTool('igbio')">Instagram Bio Generator</button>
-<button onclick="showTool('tiktokcaption')">TikTok Caption Generator</button>
-<button onclick="showTool('xcaption')">X Caption Generator</button>
-
-</div>
-
-
-<h2>Utilities</h2>
-
-<div class="grid">
-
-<button onclick="showTool('tts')">Text To Speech</button>
-<button onclick="showTool('translator')">Translator</button>
-<button onclick="showTool('passwordcheck')">Password Strength Checker</button>
-
+<div class="ad">
+Advertisement
 </div>
 
 </div>
-
-
-
-<!-- TOOL PANEL -->
-
-<div class="tool-panel">
-
-<section id="word" class="tool">
-
-<h3>Word Counter</h3>
-
-<textarea id="text"></textarea>
-
-<button onclick="countWords()">Count Words</button>
-
-<p id="wordResult"></p>
-
-</section>
-
-
-<section id="password" class="tool">
-
-<h3>Password Generator</h3>
-
-<button onclick="generatePassword()">Generate Password</button>
-
-<p id="passwordResult"></p>
-
-</section>
-
-
-<section id="identity" class="tool">
-
-<h3>Fake Identity Generator</h3>
-
-<button onclick="generateIdentity()">Generate</button>
-
-<div id="identityResult"></div>
-
-</section>
-
-
-<section id="tts" class="tool">
-
-<h3>Text To Speech</h3>
-
-<textarea id="speechText"></textarea>
-
-<button onclick="speak()">Speak</button>
-
-</section>
-
-</div>
-
 
 <footer>
 
-<p>© 2026 MultiTools Hub</p>
+<p>© 2026 Free MultiTools</p>
 
 </footer>
-
-
-<script src="app.js"></script>
 
 </body>
 </html>
