@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Gradient Generator</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<h2>CSS Gradient Generator</h2>
+
+<input type="color" id="color1" value="#ff0000">
+
+<input type="color" id="color2" value="#0000ff">
+
+<button onclick="generate()">Generate</button>
+
+<div id="box" style="height:200px;margin-top:20px"></div>
+
+<textarea id="code" style="width:100%;height:80px"></textarea>
+
+<script>
+
+function generate(){
+
+let c1=document.getElementById("color1").value;
+
+let c2=document.getElementById("color2").value;
+
+let gradient="linear-gradient("+c1+","+c2+")";
+
+document.getElementById("box").style.background=gradient;
+
+document.getElementById("code").value="background:"+gradient+";";
+
+}
+
+</script>
+
+</body>
+</html>
