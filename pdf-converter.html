@@ -1,1 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Text to PDF Converter</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+
+body{
+font-family:Arial;
+max-width:800px;
+margin:auto;
+padding:20px;
+background:#f4f4f4;
+}
+
+textarea{
+width:100%;
+height:200px;
+padding:10px;
+font-size:16px;
+}
+
+button{
+padding:10px 20px;
+font-size:16px;
+margin-top:10px;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h2>Text to PDF Converter</h2>
+
+<textarea id="textInput" placeholder="Type or paste text here"></textarea>
+
+<br>
+
+<button onclick="generatePDF()">Download PDF</button>
+
+<script>
+
+function generatePDF(){
+
+const { jsPDF } = window.jspdf
+
+const doc = new jsPDF()
+
+let text=document.getElementById("textInput").value
+
+doc.text(text,10,10)
+
+doc.save("document.pdf")
+
+}
+
+</script>
+
+</body>
+
+</html>
