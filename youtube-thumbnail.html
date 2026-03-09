@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>YouTube Thumbnail Downloader</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+font-family:Arial;
+max-width:700px;
+margin:auto;
+padding:20px;
+}
+
+input{
+width:100%;
+padding:10px;
+font-size:16px;
+}
+
+button{
+padding:10px 20px;
+margin-top:10px;
+font-size:16px;
+cursor:pointer;
+}
+
+img{
+margin-top:20px;
+max-width:100%;
+}
+</style>
+
+</head>
+
+<body>
+
+<h2>YouTube Thumbnail Downloader</h2>
+
+<input id="url" placeholder="Paste YouTube video URL">
+
+<button onclick="getThumbnail()">Get Thumbnail</button>
+
+<br>
+
+<img id="thumb">
+
+<br>
+
+<a id="download" download="thumbnail.jpg">Download Thumbnail</a>
+
+<script>
+
+function getThumbnail(){
+
+let url=document.getElementById("url").value
+
+let id=""
+
+if(url.includes("v=")){
+id=url.split("v=")[1].substring(0,11)
+}
+
+let thumbnail="https://img.youtube.com/vi/"+id+"/maxresdefault.jpg"
+
+document.getElementById("thumb").src=thumbnail
+
+document.getElementById("download").href=thumbnail
+
+}
+
+</script>
+
+</body>
+</html>
