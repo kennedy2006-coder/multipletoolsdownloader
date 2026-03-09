@@ -1,1 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
 
+<title>Word Counter</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="style.css">
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8718351899149472"
+crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+<h2>Word & Character Counter</h2>
+
+<textarea id="text" placeholder="Type or paste text here..." oninput="countText()"></textarea>
+
+<div>
+
+<p>Words: <span id="words">0</span></p>
+<p>Characters: <span id="chars">0</span></p>
+
+</div>
+
+<script>
+
+function countText(){
+
+let text=document.getElementById("text").value;
+
+let words=text.trim().split(/\s+/).filter(Boolean);
+
+document.getElementById("words").innerText=words.length;
+
+document.getElementById("chars").innerText=text.length;
+
+}
+
+</script>
+
+</body>
+</html>
