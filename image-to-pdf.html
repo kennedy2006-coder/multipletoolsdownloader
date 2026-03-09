@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Image to PDF Converter</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+
+body{
+font-family:Arial;
+max-width:800px;
+margin:auto;
+padding:20px;
+background:#f4f4f4;
+}
+
+h2{
+text-align:center;
+}
+
+input{
+margin-top:10px;
+}
+
+#preview img{
+width:150px;
+margin:10px;
+border-radius:6px;
+}
+
+button{
+padding:10px 20px;
+margin-top:20px;
+font-size:16px;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h2>Image to PDF Converter</h2>
+
+<input type="file" id="images" multiple accept="image/*">
+
+<div id="preview"></div>
+
+<button onclick="createPDF()">Download PDF</button>
+
+<script>
+
+let imageFiles=[]
+
+document.getElementById("images").addEventListener("change",function(e){
+
+imageFiles=e.target.files
+
+document.getElementById("preview").innerHTML=""
+
+for(let i=0;i<imageFiles.length;i++){
+
+let reader=new FileReader()
+
+reader.onload=function(event){
+
+let img=document.createElement("img")
+
+img.src=event.target.result
+
+document.getElementById("preview").appendChild(img)
+
+}
+
+reader.readAsDataURL(imageFiles[i])
+
+}
+
+})
+
+function createPDF(){
+
+const { jsPDF } = window.jspdf
+
+const pdf=new jsPDF()
+
+let count=0
+
+for(let file of imageFiles){
+
+let reader=new FileReader()
+
+reader.onload=function(e){
+
+let img=new Image()
+
+img.onload=function(){
+
+let width=190
+let height=(img.height*width)/img.width
+
+if(count>0){
+pdf.addPage()
+}
+
+pdf.addImage(img,"JPEG",10,10,width,height)
+
+count++
+
+if(count===imageFiles.length){
+pdf.save("images.pdf")
+}
+
+}
+
+img.src=e.target.result
+
+}
+
+reader.readAsDataURL(file)
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
