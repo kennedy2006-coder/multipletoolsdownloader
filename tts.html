@@ -90,6 +90,10 @@ const response=await fetch("https://api.elevenlabs.io/v1/text-to-speech/"+voice,
 
 method:"POST",
 
+const response=await fetch("https://api.elevenlabs.io/v1/text-to-speech/"+voice,{
+
+method:"POST",
+
 headers:{
 "Content-Type":"application/json",
 "xi-api-key":"sk_73f5a1bbf98555671c409952d75d0271fd91ab5eda4ac42b"
@@ -97,7 +101,7 @@ headers:{
 
 body:JSON.stringify({
 text:text,
-model_id:"eleven_monolingual_v1"
+model_id:"eleven_multilingual_v2"
 })
 
 })
