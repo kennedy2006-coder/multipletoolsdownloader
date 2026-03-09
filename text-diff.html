@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Text Diff Checker</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<h2>Text Diff Checker</h2>
+
+<textarea id="text1" placeholder="First text" style="width:100%;height:120px"></textarea>
+
+<br><br>
+
+<textarea id="text2" placeholder="Second text" style="width:100%;height:120px"></textarea>
+
+<br><br>
+
+<button onclick="compare()">Compare</button>
+
+<div id="result"></div>
+
+<script>
+
+function compare(){
+
+let a=document.getElementById("text1").value;
+
+let b=document.getElementById("text2").value;
+
+if(a===b){
+
+document.getElementById("result").innerHTML="Texts are identical";
+
+}
+
+else{
+
+document.getElementById("result").innerHTML="Texts are different";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
