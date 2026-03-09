@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>IP Address Lookup</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body>
+
+<h2>Your IP Information</h2>
+
+<button onclick="getIP()">Check IP</button>
+
+<div id="result"></div>
+
+<script>
+
+function getIP(){
+
+fetch("https://ipapi.co/json/")
+
+.then(res=>res.json())
+
+.then(data=>{
+
+document.getElementById("result").innerHTML=
+
+"IP: "+data.ip+"<br>"+
+
+"City: "+data.city+"<br>"+
+
+"Country: "+data.country_name+"<br>"+
+
+"ISP: "+data.org;
+
+});
+
+}
+
+</script>
+
+</body>
+</html>
