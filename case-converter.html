@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Case Converter</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<h2>Text Case Converter</h2>
+
+<textarea id="text"></textarea>
+
+<br><br>
+
+<button onclick="upper()">UPPERCASE</button>
+<button onclick="lower()">lowercase</button>
+
+<script>
+
+function upper(){
+let text=document.getElementById("text");
+text.value=text.value.toUpperCase();
+}
+
+function lower(){
+let text=document.getElementById("text");
+text.value=text.value.toLowerCase();
+}
+
+</script>
+
+</body>
+</html>
