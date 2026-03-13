@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>GPA Calculator</title>
+
+<style>
+
+body{
+font-family:Arial;
+text-align:center;
+background:#f4f6f8;
+}
+
+input{
+padding:8px;
+margin:10px;
+}
+
+button{
+padding:10px 20px;
+cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<a href="index.html">← Back to Tools</a>
+
+<h2>GPA Calculator</h2>
+
+<input id="grade1" placeholder="Course 1 Grade">
+<input id="grade2" placeholder="Course 2 Grade">
+<input id="grade3" placeholder="Course 3 Grade">
+
+<br>
+
+<button onclick="calculate()">Calculate GPA</button>
+
+<h3 id="result"></h3>
+
+<script>
+
+function calculate(){
+
+let g1 = Number(document.getElementById("grade1").value);
+let g2 = Number(document.getElementById("grade2").value);
+let g3 = Number(document.getElementById("grade3").value);
+
+let gpa = (g1+g2+g3)/3;
+
+document.getElementById("result").innerHTML="Your GPA: "+gpa.toFixed(2);
+
+}
+
+</script>
+
+</body>
+</html>
