@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Study Timer</title>
+<style>
+body{
+font-family:Arial;
+text-align:center;
+background:#f4f6f8;
+}
+
+.container{
+margin-top:100px;
+}
+
+button{
+padding:10px 20px;
+margin:10px;
+font-size:16px;
+cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<a href="index.html">← Back to Tools</a>
+
+<div class="container">
+
+<h2>Study Timer (Pomodoro)</h2>
+
+<h1 id="timer">25:00</h1>
+
+<button onclick="startTimer()">Start</button>
+<button onclick="resetTimer()">Reset</button>
+
+</div>
+
+<script>
+
+let time = 1500;
+let timer;
+
+function startTimer(){
+
+timer = setInterval(function(){
+
+let minutes = Math.floor(time/60);
+let seconds = time%60;
+
+document.getElementById("timer").innerHTML =
+minutes + ":" + (seconds<10?"0":"") + seconds;
+
+time--;
+
+if(time < 0){
+clearInterval(timer);
+alert("Study session complete! Take a break.");
+}
+
+},1000)
+
+}
+
+function resetTimer(){
+
+clearInterval(timer);
+time = 1500;
+document.getElementById("timer").innerHTML="25:00";
+
+}
+
+</script>
+
+</body>
+</html>
