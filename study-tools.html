@@ -1,264 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Student Study Hub</title>
-
-<style>
-
-body{
-font-family:Arial;
-background:#f4f6f8;
-margin:0;
-padding:20px;
-text-align:center;
-}
-
-h1{
-color:#2b6cb0;
-}
-
-.container{
-max-width:800px;
-margin:auto;
-}
-
-.card{
-background:white;
-padding:20px;
-margin:20px 0;
-border-radius:12px;
-box-shadow:0 3px 10px rgba(0,0,0,0.1);
-}
-
-textarea{
-width:100%;
-height:120px;
-padding:10px;
-margin-top:10px;
-border-radius:6px;
-border:1px solid #ccc;
-}
-
-input{
-padding:10px;
-margin:5px;
-border-radius:6px;
-border:1px solid #ccc;
-}
-
-button{
-padding:10px 15px;
-margin-top:10px;
-border:none;
-background:#2b6cb0;
-color:white;
-border-radius:6px;
-cursor:pointer;
-}
-
-button:hover{
-background:#1a4f8b;
-}
-
-.flashcard{
-margin-top:20px;
-height:150px;
-display:flex;
-align-items:center;
-justify-content:center;
-background:#fafafa;
-border-radius:10px;
-font-size:20px;
-cursor:pointer;
-border:1px solid #ddd;
-}
-
-</style>
-
+<title>Student Study Tools</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="container">
+<a href="index.html">← Back to Tools</a>
 
-<h1>Student Study Hub</h1>
+<h2>Study Tools</h2>
+<p>Helpful tools designed to improve learning and revision.</p>
 
-<p>Tools to help students study faster and smarter.</p>
+<ul>
 
-<!-- NOTE SUMMARIZER -->
+<li><a href="study-timer.html">Study Timer</a></li>
 
-<div class="card">
+<li><a href="flashcards.html">Flashcards Generator</a></li>
 
-<h2>Note Summarizer</h2>
+<li><a href="gpa-calculator.html">GPA Calculator</a></li>
 
-<textarea id="notes" placeholder="Paste your long notes here..."></textarea>
+<li><a href="quick-quiz.html">Practice Quiz</a></li>
 
-<button onclick="summarize()">Summarize</button>
-
-<p id="summary"></p>
-
-</div>
-
-
-<!-- FLASHCARDS -->
-
-<div class="card">
-
-<h2>Flashcards</h2>
-
-<input id="front" placeholder="Question">
-<input id="back" placeholder="Answer">
-
-<br>
-
-<button onclick="addFlashcard()">Add Flashcard</button>
-
-<div class="flashcard" id="flashcard" onclick="flipCard()">
-No flashcard yet
-</div>
-
-</div>
-
-
-<!-- QUIZ -->
-
-<div class="card">
-
-<h2>Quick Quiz</h2>
-
-<p id="question">2 + 2 = ?</p>
-
-<input id="answer">
-
-<br>
-
-<button onclick="checkAnswer()">Submit</button>
-
-<p id="quizResult"></p>
-
-</div>
-
-
-<!-- STUDY PLANNER -->
-
-<div class="card">
-
-<h2>Study Planner</h2>
-
-<input id="task" placeholder="Add study task">
-
-<button onclick="addTask()">Add</button>
-
-<ul id="taskList"></ul>
-
-</div>
-
-
-</div>
-
-<script>
-
-/* NOTE SUMMARIZER */
-
-function summarize(){
-
-let text=document.getElementById("notes").value;
-
-let words=text.split(" ");
-
-let short=words.slice(0,30).join(" ");
-
-document.getElementById("summary").innerText=short+"...";
-
-}
-
-
-/* FLASHCARDS */
-
-let flashcards=[];
-let index=0;
-let flipped=false;
-
-function addFlashcard(){
-
-let front=document.getElementById("front").value;
-
-let back=document.getElementById("back").value;
-
-flashcards.push({front:front,back:back});
-
-index=flashcards.length-1;
-
-showFlashcard();
-
-}
-
-function showFlashcard(){
-
-if(flashcards.length===0)return;
-
-flipped=false;
-
-document.getElementById("flashcard").innerText=flashcards[index].front;
-
-}
-
-function flipCard(){
-
-if(flashcards.length===0)return;
-
-if(!flipped){
-
-document.getElementById("flashcard").innerText=flashcards[index].back;
-
-flipped=true;
-
-}else{
-
-document.getElementById("flashcard").innerText=flashcards[index].front;
-
-flipped=false;
-
-}
-
-}
-
-
-/* QUIZ */
-
-function checkAnswer(){
-
-let ans=document.getElementById("answer").value;
-
-if(ans==4){
-
-document.getElementById("quizResult").innerText="Correct!";
-
-}else{
-
-document.getElementById("quizResult").innerText="Try again.";
-
-}
-
-}
-
-
-/* STUDY PLANNER */
-
-function addTask(){
-
-let task=document.getElementById("task").value;
-
-let li=document.createElement("li");
-
-li.innerText=task;
-
-document.getElementById("taskList").appendChild(li);
-
-}
-
-</script>
+</ul>
 
 </body>
-
 </html>
