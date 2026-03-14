@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Practice Quiz</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<a href="study-tools.html">← Back to Study Tools</a>
+
+<h2>Practice Quiz</h2>
+
+<select id="subject">
+
+<option value="18">Computer Science</option>
+<option value="19">Math</option>
+<option value="17">Science</option>
+<option value="23">History</option>
+<option value="10">Literature</option>
+
+</select>
+
+<br><br>
+
+<button onclick="loadQuestion()">Get Question</button>
+
+<h3 id="question"></h3>
+
+<div id="answers"></div>
+
+<p id="result"></p>
+
+<script>
+
+async function loadQuestion(){
+
+let subject=document.getElementById("subject").value;
+
+let res=await fetch("https://opentdb.com/api.php?amount=1&category="+subject+"&type=multiple");
+
+let data=await res.json();
+
+let q=data.results[0];
+
+document.getElementById("question").innerHTML=q.question;
+
+let answers=[...q.incorrect_answers];
+
+answers.push(q.correct_answer);
+
+answers.sort(()=>Math.random()-0.5);
+
+let html="";
+
+answers.forEach(a=>{
+
+html+=`<button onclick="checkAnswer('${a}','${q.correct_answer}')">${a}</button><br>`;
+
+});
+
+document.getElementById("answers").innerHTML=html;
+
+}
+
+function checkAnswer(selected,correct){
+
+if(selected===correct){
+
+document.getElementById("result").innerHTML="✅ Correct!";
+
+}else{
+
+document.getElementById("result").innerHTML="❌ Correct answer: "+correct;
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
