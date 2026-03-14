@@ -2,7 +2,164 @@
 <html>
 <head>
 <title>Flashcards Generator</title>
-<link rel="stylesheet" href="style.css">
+<style>
+  /* style.css */
+
+/* General Page */
+body{
+font-family: Arial, Helvetica, sans-serif;
+background:#f4f6f9;
+margin:0;
+padding:20px;
+color:#333;
+text-align:center;
+}
+
+/* Links */
+a{
+text-decoration:none;
+color:#2b6cb0;
+font-weight:bold;
+}
+
+a:hover{
+text-decoration:underline;
+}
+
+/* Headings */
+h1,h2,h3{
+margin-bottom:10px;
+}
+
+/* Containers */
+.container{
+max-width:700px;
+margin:auto;
+background:white;
+padding:25px;
+border-radius:10px;
+box-shadow:0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* Lists */
+ul{
+list-style:none;
+padding:0;
+}
+
+ul li{
+margin:12px 0;
+}
+
+ul li a{
+display:inline-block;
+padding:10px 18px;
+background:#2b6cb0;
+color:white;
+border-radius:6px;
+transition:0.2s;
+}
+
+ul li a:hover{
+background:#1a4f8b;
+}
+
+/* Inputs */
+input,select{
+padding:10px;
+margin:8px;
+border:1px solid #ccc;
+border-radius:6px;
+font-size:15px;
+width:200px;
+}
+
+/* Buttons */
+button{
+padding:10px 18px;
+margin:10px;
+border:none;
+border-radius:6px;
+background:#2b6cb0;
+color:white;
+font-size:15px;
+cursor:pointer;
+transition:0.2s;
+}
+
+button:hover{
+background:#1a4f8b;
+}
+
+/* Cards (Flashcards) */
+#cards div{
+background:#fafafa;
+border:1px solid #ddd;
+border-radius:8px;
+padding:15px;
+margin:10px auto;
+max-width:400px;
+transition:0.2s;
+}
+
+#cards div:hover{
+background:#f0f0f0;
+}
+
+/* Quiz answers */
+#answers button{
+display:block;
+margin:8px auto;
+width:220px;
+}
+
+/* Course list */
+#courses{
+margin-top:15px;
+}
+
+#courses li{
+background:#fafafa;
+padding:8px;
+margin:6px auto;
+max-width:300px;
+border-radius:6px;
+border:1px solid #ddd;
+}
+
+/* Result text */
+#result{
+margin-top:15px;
+font-weight:bold;
+font-size:18px;
+}
+
+/* Timer */
+#timer{
+font-size:32px;
+margin-top:20px;
+color:#2b6cb0;
+font-weight:bold;
+}
+
+/* Mobile responsive */
+@media(max-width:600px){
+
+.container{
+width:90%;
+padding:15px;
+}
+
+input,select{
+width:90%;
+}
+
+button{
+width:90%;
+}
+
+}
+</style>
 </head>
 
 <body>
