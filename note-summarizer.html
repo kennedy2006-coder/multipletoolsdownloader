@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AI Note Summarizer</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f6f9;
+text-align:center;
+padding:20px;
+}
+
+.container{
+max-width:700px;
+margin:auto;
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+textarea{
+width:100%;
+height:200px;
+margin-top:10px;
+padding:10px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+button{
+padding:10px 20px;
+background:#2b6cb0;
+color:white;
+border:none;
+border-radius:6px;
+margin-top:10px;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<a href="index.html">← Back to Tools</a>
+
+<h2>AI Note Summarizer</h2>
+
+<p>Upload screenshots or PDF of notes and summarize them.</p>
+
+<input type="file" id="fileInput" multiple accept="image/*,.pdf">
+
+<br><br>
+
+<textarea id="noteText" placeholder="Extracted text will appear here..."></textarea>
+
+<br>
+
+<button onclick="summarize()">Summarize Notes</button>
+
+<h3>Summary</h3>
+
+<textarea id="summary"></textarea>
+
+</div>
+
+<script>
+
+function summarize(){
+
+let text=document.getElementById("noteText").value;
+
+if(text.length<20){
+
+alert("Please paste or extract note text first");
+
+return;
+
+}
+
+let sentences=text.split(". ");
+
+let summary=sentences.slice(0,5).join(". ");
+
+document.getElementById("summary").value=summary;
+
+}
+
+</script>
+
+</body>
+</html>
