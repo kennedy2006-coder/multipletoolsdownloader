@@ -7,23 +7,24 @@
 
 <body>
 
-<a href="study-tools.html">← Back to Study Tools</a>
+<a href="study-tools.html">← Back</a>
 
 <h2>Practice Quiz</h2>
 
 <select id="subject">
 
 <option value="18">Computer Science</option>
-<option value="19">Math</option>
+<option value="19">Mathematics</option>
 <option value="17">Science</option>
 <option value="23">History</option>
+<option value="22">Geography</option>
 <option value="10">Literature</option>
 
 </select>
 
 <br><br>
 
-<button onclick="loadQuestion()">Get Question</button>
+<button onclick="loadQuestion()">Generate Question</button>
 
 <h3 id="question"></h3>
 
@@ -45,9 +46,7 @@ let q=data.results[0];
 
 document.getElementById("question").innerHTML=q.question;
 
-let answers=[...q.incorrect_answers];
-
-answers.push(q.correct_answer);
+let answers=[...q.incorrect_answers,q.correct_answer];
 
 answers.sort(()=>Math.random()-0.5);
 
@@ -67,11 +66,11 @@ function checkAnswer(selected,correct){
 
 if(selected===correct){
 
-document.getElementById("result").innerHTML="✅ Correct!";
+document.getElementById("result").innerHTML="Correct";
 
 }else{
 
-document.getElementById("result").innerHTML="❌ Correct answer: "+correct;
+document.getElementById("result").innerHTML="Wrong. Correct: "+correct;
 
 }
 
