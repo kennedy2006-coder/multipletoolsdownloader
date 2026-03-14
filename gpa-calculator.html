@@ -2,55 +2,66 @@
 <html>
 <head>
 <title>GPA Calculator</title>
-
-<style>
-
-body{
-font-family:Arial;
-text-align:center;
-background:#f4f6f8;
-}
-
-input{
-padding:8px;
-margin:10px;
-}
-
-button{
-padding:10px 20px;
-cursor:pointer;
-}
-
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<a href="index.html">← Back to Tools</a>
+<a href="study-tools.html">← Back to Study Tools</a>
 
 <h2>GPA Calculator</h2>
 
-<input id="grade1" placeholder="Course 1 Grade">
-<input id="grade2" placeholder="Course 2 Grade">
-<input id="grade3" placeholder="Course 3 Grade">
+<input id="course" placeholder="Course Name">
 
-<br>
+<input id="grade" placeholder="Grade (A=4, B=3 etc)">
 
-<button onclick="calculate()">Calculate GPA</button>
+<input id="credit" placeholder="Credit Unit">
+
+<br><br>
+
+<button onclick="addCourse()">Add Course</button>
+
+<button onclick="calculateGPA()">Calculate GPA</button>
+
+<ul id="courses"></ul>
 
 <h3 id="result"></h3>
 
 <script>
 
-function calculate(){
+let courses=[];
 
-let g1 = Number(document.getElementById("grade1").value);
-let g2 = Number(document.getElementById("grade2").value);
-let g3 = Number(document.getElementById("grade3").value);
+function addCourse(){
 
-let gpa = (g1+g2+g3)/3;
+let grade=parseFloat(document.getElementById("grade").value);
 
-document.getElementById("result").innerHTML="Your GPA: "+gpa.toFixed(2);
+let credit=parseFloat(document.getElementById("credit").value);
+
+courses.push({grade,credit});
+
+let li=document.createElement("li");
+
+li.innerText="Grade:"+grade+" Credit:"+credit;
+
+document.getElementById("courses").appendChild(li);
+
+}
+
+function calculateGPA(){
+
+let totalPoints=0;
+let totalCredits=0;
+
+courses.forEach(c=>{
+
+totalPoints+=c.grade*c.credit;
+totalCredits+=c.credit;
+
+});
+
+let gpa=totalPoints/totalCredits;
+
+document.getElementById("result").innerText="Your GPA: "+gpa.toFixed(2);
 
 }
 
