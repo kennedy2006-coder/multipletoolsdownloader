@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Essay Helper</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f6f9;
+text-align:center;
+padding:20px;
+}
+
+.container{
+max-width:700px;
+margin:auto;
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+textarea{
+width:100%;
+height:200px;
+padding:10px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+button{
+padding:10px 20px;
+background:#2b6cb0;
+color:white;
+border:none;
+border-radius:6px;
+margin-top:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<a href="index.html">← Back</a>
+
+<h2>AI Essay Helper</h2>
+
+<p>Enter a topic and generate an essay outline.</p>
+
+<textarea id="topic" placeholder="Example: Causes of World War 1"></textarea>
+
+<button onclick="generate()">Generate Outline</button>
+
+<h3>Essay Outline</h3>
+
+<textarea id="output"></textarea>
+
+</div>
+
+<script>
+
+function generate(){
+
+let topic=document.getElementById("topic").value;
+
+let outline=
+
+"Introduction\n"+
+"• Overview of "+topic+"\n\n"+
+
+"Main Points\n"+
+"• Key cause 1\n"+
+"• Key cause 2\n"+
+"• Key impact\n\n"+
+
+"Conclusion\n"+
+"• Summary of "+topic;
+
+document.getElementById("output").value=outline;
+
+}
+
+</script>
+
+</body>
+</html>
