@@ -120,6 +120,8 @@ text-decoration:none;
 </p>
 
 </footer>
+
+
 <script>
 
 async function summarize(){
@@ -131,7 +133,7 @@ alert("Please paste enough notes to summarize.");
 return;
 }
 
-document.getElementById("summary").value = "Generating summary...";
+document.getElementById("summary").value="Generating summary...";
 
 try{
 
@@ -145,9 +147,7 @@ body:JSON.stringify({text:text})
 
 const data = await response.json();
 
-const result = data.summary;
-
-document.getElementById("summary").value = result;
+document.getElementById("summary").value=data.summary;
 
 }catch(error){
 
