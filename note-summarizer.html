@@ -1,76 +1,127 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
 <title>AI Note Summarizer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 
 body{
-font-family:Arial;
-background:#f4f6f9;
-text-align:center;
-padding:20px;
+font-family: Arial, sans-serif;
+background:#f4f6f8;
+margin:0;
+padding:0;
 }
 
 .container{
-max-width:700px;
+max-width:900px;
 margin:auto;
-background:white;
-padding:20px;
-border-radius:10px;
-box-shadow:0 4px 10px rgba(0,0,0,0.1);
+padding:40px 20px;
+}
+
+h1{
+text-align:center;
+color:#222;
+margin-bottom:10px;
+}
+
+p{
+text-align:center;
+color:#555;
+margin-bottom:30px;
 }
 
 textarea{
 width:100%;
-height:200px;
-margin-top:10px;
-padding:10px;
-border-radius:6px;
+min-height:180px;
+padding:15px;
+border-radius:8px;
 border:1px solid #ccc;
+font-size:16px;
+resize:vertical;
 }
 
 button{
-padding:10px 20px;
-background:#2b6cb0;
+background:#2563eb;
 color:white;
 border:none;
+padding:14px 25px;
+font-size:16px;
 border-radius:6px;
-margin-top:10px;
 cursor:pointer;
+margin-top:15px;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+
+.output{
+margin-top:25px;
+}
+
+footer{
+margin-top:60px;
+background:#111;
+color:#ccc;
+padding:25px;
+text-align:center;
+font-size:14px;
+}
+
+footer a{
+color:#4da3ff;
+text-decoration:none;
+margin:0 10px;
+}
+
+footer a:hover{
+text-decoration:underline;
+}
+
+.back{
+display:inline-block;
+margin-bottom:20px;
+color:#2563eb;
+text-decoration:none;
 }
 
 </style>
-
 </head>
 
 <body>
 
 <div class="container">
 
-<a href="index.html">← Back to Tools</a>
+<a class="back" href="index.html">← Back to Tools</a>
 
-<h2>AI Note Summarizer</h2>
+<h1>AI Note Summarizer</h1>
+<p>Paste your study notes and generate a clear AI summary.</p>
 
-<p>Upload screenshots or PDF of notes and summarize them.</p>
-
-<input type="file" id="fileInput" multiple accept="image/*,.pdf">
-
-<br><br>
-
-<textarea id="noteText" placeholder="Extracted text will appear here..."></textarea>
-
-<br>
+<textarea id="noteText" placeholder="Paste your lecture notes, research notes, or study material here..."></textarea>
 
 <button onclick="summarize()">Summarize Notes</button>
 
-<h3>Summary</h3>
-
-<textarea id="summary"></textarea>
+<div class="output">
+<textarea id="summary" placeholder="Your summarized notes will appear here..." readonly></textarea>
+</div>
 
 </div>
 
-  <script>
+<footer>
+
+<p>© 2026 Multiple Tools Downloader</p>
+
+<p>
+<a href="privacy.html">Privacy Policy</a>
+<a href="terms.html">Terms</a>
+<a href="contact.html">Contact</a>
+</p>
+
+</footer>
+
+<script>
 
 async function summarize(){
 
@@ -81,7 +132,7 @@ alert("Please paste enough notes to summarize.");
 return;
 }
 
-document.getElementById("summary").value = "Generating summary...";
+document.getElementById("summary").value="Generating summary...";
 
 try{
 
@@ -90,26 +141,24 @@ method:"POST",
 headers:{
 "Content-Type":"application/json"
 },
-body: JSON.stringify({
-text:text
-})
+body:JSON.stringify({text:text})
 });
 
 const data = await response.json();
 
 const result = data.candidates[0].content.parts[0].text;
 
-document.getElementById("summary").value = result;
+document.getElementById("summary").value=result;
 
 }catch(error){
 
-document.getElementById("summary").value = "Error generating summary";
+document.getElementById("summary").value="Error generating summary.";
 
 }
 
 }
 
-  </script>
+</script>
 
 </body>
 </html>
