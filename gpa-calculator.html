@@ -7,13 +7,22 @@
 
 <body>
 
-<a href="study-tools.html">← Back to Study Tools</a>
+<a href="study-tools.html">← Back</a>
 
-<h2>GPA Calculator</h2>
+<h2>University GPA Calculator</h2>
 
-<input id="course" placeholder="Course Name">
+<label>Select GPA Scale</label>
 
-<input id="grade" placeholder="Grade (A=4, B=3 etc)">
+<select id="scale">
+
+<option value="4">4.0 Scale</option>
+<option value="5">5.0 Scale</option>
+
+</select>
+
+<br><br>
+
+<input id="grade" placeholder="Grade Point">
 
 <input id="credit" placeholder="Credit Unit">
 
@@ -34,14 +43,13 @@ let courses=[];
 function addCourse(){
 
 let grade=parseFloat(document.getElementById("grade").value);
-
 let credit=parseFloat(document.getElementById("credit").value);
 
 courses.push({grade,credit});
 
 let li=document.createElement("li");
 
-li.innerText="Grade:"+grade+" Credit:"+credit;
+li.innerText="Grade "+grade+" | Credit "+credit;
 
 document.getElementById("courses").appendChild(li);
 
@@ -49,17 +57,17 @@ document.getElementById("courses").appendChild(li);
 
 function calculateGPA(){
 
-let totalPoints=0;
-let totalCredits=0;
+let points=0;
+let credits=0;
 
 courses.forEach(c=>{
 
-totalPoints+=c.grade*c.credit;
-totalCredits+=c.credit;
+points+=c.grade*c.credit;
+credits+=c.credit;
 
 });
 
-let gpa=totalPoints/totalCredits;
+let gpa=points/credits;
 
 document.getElementById("result").innerText="Your GPA: "+gpa.toFixed(2);
 
