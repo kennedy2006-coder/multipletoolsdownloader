@@ -4,21 +4,21 @@ const { text } = req.body;
 
 const apiKey = "AIzaSyA9m8az9N6e657qSEjbyp-08BakDqF4zNA";
 
-try{
+try {
 
 const response = await fetch(
-`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`,
+`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
 {
-method:"POST",
-headers:{
-"Content-Type":"application/json"
+method: "POST",
+headers: {
+"Content-Type": "application/json"
 },
-body:JSON.stringify({
-contents:[
+body: JSON.stringify({
+contents: [
 {
-parts:[
+parts: [
 {
-text:`Summarize these study notes clearly for a university student:\n${text}`
+text: `Summarize these university study notes clearly and shortly:\n\n${text}`
 }
 ]
 }
@@ -29,11 +29,14 @@ text:`Summarize these study notes clearly for a university student:\n${text}`
 
 const data = await response.json();
 
-res.status(200).json(data);
+const summary =
+data?.candidates?.[0]?.content?.parts?.[0]?.text || "No summary generated.";
 
-}catch(error){
+res.status(200).json({ summary });
 
-res.status(500).json({error:"AI summarization failed"});
+} catch (error) {
+
+res.status(500).json({ error: "AI summarization failed" });
 
 }
 
