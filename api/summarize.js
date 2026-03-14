@@ -2,7 +2,7 @@ export default async function handler(req, res) {
 
 const { text } = req.body;
 
-const apiKey = "YOUR_API_KEY";
+const apiKey = "AIzaSyA9m8az9N6e657qSEjbyp-08BakDqF4zNA";
 
 try {
 
