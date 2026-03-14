@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AI Study Assistant</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f6f9;
+padding:20px;
+text-align:center;
+}
+
+.container{
+max-width:700px;
+margin:auto;
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+input{
+width:80%;
+padding:10px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+button{
+padding:10px 20px;
+background:#2b6cb0;
+color:white;
+border:none;
+border-radius:6px;
+margin-left:10px;
+}
+
+#response{
+margin-top:20px;
+text-align:left;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<a href="index.html">← Back</a>
+
+<h2>AI Study Assistant</h2>
+
+<p>Ask any academic question.</p>
+
+<input id="question" placeholder="Ask something like 'Explain photosynthesis'">
+
+<button onclick="askAI()">Ask</button>
+
+<div id="response"></div>
+
+</div>
+
+<script>
+
+function askAI(){
+
+let q=document.getElementById("question").value;
+
+if(q==="") return;
+
+let response="This is a demo response. Connect to AI API to get real answers.";
+
+document.getElementById("response").innerHTML="<b>Answer:</b><br>"+response;
+
+}
+
+</script>
+
+</body>
+</html>
