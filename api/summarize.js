@@ -18,7 +18,7 @@ contents: [
 {
 parts: [
 {
-text: `Summarize these university study notes clearly and shortly:\n\n${text}`
+text: `Summarize these study notes clearly for a university student:\n\n${text}`
 }
 ]
 }
@@ -29,10 +29,19 @@ text: `Summarize these university study notes clearly and shortly:\n\n${text}`
 
 const data = await response.json();
 
-const summary =
-data?.candidates?.[0]?.content?.parts?.[0]?.text || "No summary generated.";
+console.log(data);
+
+if(data.candidates && data.candidates.length > 0){
+
+const summary = data.candidates[0].content.parts[0].text;
 
 res.status(200).json({ summary });
+
+}else{
+
+res.status(200).json({ summary:"AI could not generate a summary." });
+
+}
 
 } catch (error) {
 
