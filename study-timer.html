@@ -2,72 +2,61 @@
 <html>
 <head>
 <title>Study Timer</title>
-<style>
-body{
-font-family:Arial;
-text-align:center;
-background:#f4f6f8;
-}
-
-.container{
-margin-top:100px;
-}
-
-button{
-padding:10px 20px;
-margin:10px;
-font-size:16px;
-cursor:pointer;
-}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<a href="index.html">← Back to Tools</a>
+<a href="study-tools.html">← Back</a>
 
-<div class="container">
+<h2>Study Timer</h2>
+<p>Use the Pomodoro technique for focused study sessions.</p>
 
-<h2>Study Timer (Pomodoro)</h2>
+<select id="session">
 
-<h1 id="timer">25:00</h1>
+<option value="25">25 Minute Study</option>
+<option value="50">50 Minute Study</option>
+<option value="15">15 Minute Quick Review</option>
 
-<button onclick="startTimer()">Start</button>
-<button onclick="resetTimer()">Reset</button>
+</select>
 
-</div>
+<br><br>
+
+<button onclick="startTimer()">Start Timer</button>
+
+<h3 id="timer">00:00</h3>
 
 <script>
 
-let time = 1500;
-let timer;
+let interval;
 
 function startTimer(){
 
-timer = setInterval(function(){
+let minutes=document.getElementById("session").value;
 
-let minutes = Math.floor(time/60);
-let seconds = time%60;
+let seconds=minutes*60;
 
-document.getElementById("timer").innerHTML =
-minutes + ":" + (seconds<10?"0":"") + seconds;
+clearInterval(interval);
 
-time--;
+interval=setInterval(function(){
 
-if(time < 0){
-clearInterval(timer);
-alert("Study session complete! Take a break.");
+let m=Math.floor(seconds/60);
+let s=seconds%60;
+
+if(s<10) s="0"+s;
+
+document.getElementById("timer").innerText=m+":"+s;
+
+seconds--;
+
+if(seconds<0){
+
+clearInterval(interval);
+alert("Session complete. Take a break.");
+
 }
 
-},1000)
-
-}
-
-function resetTimer(){
-
-clearInterval(timer);
-time = 1500;
-document.getElementById("timer").innerHTML="25:00";
+},1000);
 
 }
 
