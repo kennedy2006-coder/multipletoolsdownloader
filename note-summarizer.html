@@ -70,29 +70,46 @@ cursor:pointer;
 
 </div>
 
-<script>
+  <script>
 
-function summarize(){
+async function summarize(){
 
-let text=document.getElementById("noteText").value;
+const text = document.getElementById("noteText").value;
 
-if(text.length<20){
-
-alert("Please paste or extract note text first");
-
+if(text.length < 20){
+alert("Please paste enough notes to summarize.");
 return;
+}
+
+document.getElementById("summary").value = "Generating summary...";
+
+try{
+
+const response = await fetch("/api/summarize",{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body: JSON.stringify({
+text:text
+})
+});
+
+const data = await response.json();
+
+const result = data.candidates[0].content.parts[0].text;
+
+document.getElementById("summary").value = result;
+
+}catch(error){
+
+document.getElementById("summary").value = "Error generating summary";
 
 }
 
-let sentences=text.split(". ");
-
-let summary=sentences.slice(0,5).join(". ");
-
-document.getElementById("summary").value=summary;
-
 }
 
-</script>
+  </script>
 
 </body>
 </html>
